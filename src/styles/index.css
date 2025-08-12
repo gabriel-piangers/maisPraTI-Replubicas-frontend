@@ -1,0 +1,19 @@
+* {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+:root {
+    --bg-color: #f0f0f0;
+    --btn-color: rgb(243, 105, 133);
+    --btn-color-hover: rgb(206, 117, 135);
+}
+
+body {
+    
+    background-color: var(--bg-color);
+}
