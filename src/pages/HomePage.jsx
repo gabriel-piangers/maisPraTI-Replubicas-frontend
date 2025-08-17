@@ -1,5 +1,6 @@
 import { Header } from "../components/Header"
 import { Footer } from "../components/Footer"
+import { AboutCards } from "../components/AboutCards"
 
 export function HomePage() {
 
@@ -8,8 +9,8 @@ export function HomePage() {
         <>
         <Header/>
 
+        <AboutCards/>
 
-        
         <Footer/>
         </>
     )
