@@ -4,7 +4,7 @@
   width: 100%;
   background-color: rgb(21, 21, 44);
   color: white;
-  padding: 1rem;
+  padding: 1rem 5%;
   font-size: 0.9rem;
 }
 
@@ -12,19 +12,25 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
+    gap: 3rem;
+    max-width: 900px;
+    margin: auto;
 }
 
 .footer-links{
     display: flex;
     flex-direction: column;
-    width: 30%;
-    padding: 0 2rem;
-    gap: 1rem;
+    justify-content: center;
+    width: 20%;
+    gap: 0.5rem;
 }
 
 .footer-links-left {
-    width: 40%;
+    width: 30%;
+}
+
+.footer-link-header {
+    margin-bottom: 0.5rem;
 }
 
 .footer-logo{
@@ -35,10 +41,12 @@
 
 .footer-ul {
     list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .footer-li {
-    line-height: 166%;
     cursor: pointer;
 }
 

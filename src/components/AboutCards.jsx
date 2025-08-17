@@ -28,7 +28,7 @@ export function AboutCards() {
             <img
             src={logo}
             className="about-card-icon"
-            alt="icone da seção quem somos"
+            alt="icone da seção o que podemos oferecer"
           />
           </div>
           <h3 className="about-card-title"> O QUE PODEMOS OFERECER </h3>
@@ -44,7 +44,7 @@ export function AboutCards() {
             <img
             src={logo}
             className="about-card-icon"
-            alt="icone da seção quem somos"
+            alt="icone da seção nossos serviços"
           />
           </div>
           <h3 className="about-card-title"> NOSSOS SERVIÇOS </h3>

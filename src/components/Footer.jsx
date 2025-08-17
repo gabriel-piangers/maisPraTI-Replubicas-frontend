@@ -16,7 +16,7 @@ export function Footer() {
             Estamos pronto para lhe oferecer conforto e comodidade
           </p>
 
-          <div className="flex">
+          <div>
             <p className="footer-p">email@gmail.com</p>
             <p className="footer-p">(55) 5555-5555</p>
           </div>
@@ -26,7 +26,7 @@ export function Footer() {
           <h3 className="footer-link-header">Links rápidos</h3>
 
           <ul className="footer-ul">
-            <li className="footer-li">Inincio</li>
+            <li className="footer-li">Inicio</li>
             <li className="footer-li">Quem somos</li>
             <li className="footer-li">Registrar</li>
             <li className="footer-li">Entrar</li>
