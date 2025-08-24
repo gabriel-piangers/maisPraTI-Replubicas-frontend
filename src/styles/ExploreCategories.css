@@ -1,0 +1,70 @@
+@import url("./index.css");
+
+.explore-section {
+  background-color: #f5fbff;
+  padding: 3rem 1rem 5rem 1rem;
+  border-radius: 50px;
+  margin: 30px;
+  margin-top: 80px;
+  margin-bottom: 60px;
+}
+
+.explore-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.explore-header h1 {
+  font-size: 3rem;
+  margin: 0;
+  color: #333;
+}
+
+.explore-header p {
+  font-size: 20px;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.explore-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.explore-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1.5rem 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.explore-card:hover {
+  transform: translateY(-4px);
+}
+
+.explore-icon {
+  font-size: 2.25rem;
+  color: #e63946;
+  margin-bottom: 0.75rem;
+}
+
+.explore-title {
+  font-size: 1.125rem;
+  color: #333;
+  margin: 0.25rem 0;
+}
+
+.explore-subtitle {
+  font-size: 0.875rem;
+  color: #777;
+  margin: 0;
+}
+
+.explore-section {
+  background-image: linear-gradient(to bottom, #f5fbff, #ffffff 30%, #f5fbff);
+}
