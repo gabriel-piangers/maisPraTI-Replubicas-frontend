@@ -17,12 +17,14 @@
 
 .header-nav-options {
     display: flex;
+    align-items: center;
     gap: 1rem;
 }
 
 .header-register-btn {
     color: var(--btn-color);
     cursor: pointer;
+    font-size: 13px;
 }
 
 .header-register-btn:hover {
