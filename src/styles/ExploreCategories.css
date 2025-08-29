@@ -4,7 +4,6 @@
   background-color: #f5fbff;
   padding: 3rem 1rem 5rem 1rem;
   border-radius: 50px;
-  margin: 30px;
   margin-top: 80px;
   margin-bottom: 60px;
 }
@@ -40,6 +39,7 @@
   padding: 1.5rem 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
+  cursor: pointer;
   transition: transform 0.2s;
 }
 

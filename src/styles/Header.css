@@ -23,6 +23,7 @@
 .header-register-btn {
     color: var(--btn-color);
     cursor: pointer;
+    transition: all 0.2s;
 }
 
 .header-register-btn:hover {

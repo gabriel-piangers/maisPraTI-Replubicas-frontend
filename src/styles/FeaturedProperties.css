@@ -1,7 +1,6 @@
 .fp-section {
   background-color: #f8f8f8;
   padding: 3rem 1rem;
-  margin: 30px;
   border-radius: 50px;
 }
 
@@ -69,6 +68,12 @@
   font-size: 1.25rem;
   color: #fff;
   text-shadow: 0 0 4px rgba(0,0,0,0.8);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.fp-icon:hover{
+  scale: 120%;
 }
 
 .fp-icon.favorite {

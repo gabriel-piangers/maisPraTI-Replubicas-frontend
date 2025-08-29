@@ -1,9 +1,6 @@
 .hero-container {
   position: relative;
   height: 80vh;
-  margin: 30px;
-  margin-top: 50px;
-  border-radius: 50px; 
   background-size: cover;
   background-position: center;
   display: flex;
@@ -14,8 +11,7 @@
 .hero-overlay {
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.35);
-  border-radius: 50px; 
+  background: rgba(0, 0, 0, 0.45);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,7 +27,7 @@
   margin: 200px 0;
   margin-bottom: 80px;
   line-height: 1.2;
-  text-shadow: 15px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 24px rgb(255, 255, 255);
 }
 
 .hero-subtitle {
@@ -39,7 +35,7 @@
   font-size: 1.5rem;
   margin: 10px 0;
   
-  text-shadow: 15px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 24px rgb(255, 255, 255);
 }
 
 .search-bar {
@@ -86,7 +82,7 @@
   bottom: 0;
   width: 80%;
   border-radius: 50px;
-  background-color: #EB4D5B;
+  background-color: var(--btn-color);
   left: 50%;
   transform: translate(-50%, 50%);
 
