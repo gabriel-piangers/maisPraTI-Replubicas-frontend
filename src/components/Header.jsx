@@ -1,23 +1,18 @@
-import logo from "../assets/logo.png"
-import { Button } from "./Button"
-import "../styles/Header.css"
+import '../styles/Header.css';
+import { BellOutlined } from "@ant-design/icons";
+import { Avatar, Layout } from "antd";
 
-export function Header() {
+const { Header: AntdHeader } = Layout;
 
+export const Header = () => {
+  const userInitial = "R"; 
 
-    return (
-        <>
-            <nav className="header-nav">
-                <img src={logo} alt="Logo" className="header-nav-logo"/>
-
-                <div className="header-nav-options">
-                    <button className="header-register-btn">
-                        Cadastre-se
-                    </button>
-                    
-                    <Button className="header-login-btn" label="Login"/>
-                </div>
-            </nav>
-        </>
-    )
-}
+  return (
+    <AntdHeader className="header">
+      <div className="headerRight">
+        <BellOutlined className="icon" />
+        <Avatar className="avatar">{userInitial}</Avatar>
+      </div>
+    </AntdHeader>
+  );
+};
