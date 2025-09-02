@@ -9,8 +9,10 @@
 
 :root {
     --bg-color: #f0f0f0;
-    --btn-color: rgb(243, 105, 133);
-    --btn-color-hover: rgb(206, 117, 135);
+    --btn-color: #EB4D5B;
+    --btn-color-hover: rgb(233, 97, 108);
+    --blue-section-color: #00468C;
+
 }
 
 body {
@@ -27,4 +29,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.homepage-main {
+    margin: auto;
+    max-width: 1500px;
+    padding: 0 5%;
 }

@@ -2,7 +2,7 @@ import "../../styles/Dashboard.css";
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Layout, Typography, Avatar } from "antd";
-import { LogoutOutlined } from "@ant-design/icons";
+import { AiOutlineLogout } from "react-icons/ai";
 import Logo from "../../assets/logo.png";
 import { menuItems } from "./menuItems";
 import { SidebarMenu } from "../../components/SidebarMenu";
@@ -78,7 +78,7 @@ export const DashboardLayout = () => {
         <SidebarMenu menuItems={menuItems} />
 
         <div className="siderLogout" onClick={handleLogout}>
-          <LogoutOutlined className="siderLogoutIcon" />
+          <AiOutlineLogout className="siderLogoutIcon" />
           {!collapsed && <span className="siderLogoutLabel">Sair</span>}
         </div>
       </Sider>

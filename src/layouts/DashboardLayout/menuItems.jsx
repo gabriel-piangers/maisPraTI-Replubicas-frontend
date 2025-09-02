@@ -1,35 +1,35 @@
 import {
-  TeamOutlined,
-  HomeOutlined,
-  NotificationOutlined,
-  SettingOutlined,
-  CheckSquareOutlined,
-} from "@ant-design/icons";
+  FaUsers,
+  FaHome,
+  FaBell,
+  FaCog,
+  FaTasks,
+} from "react-icons/fa";
 
 export const menuItems = [
   {
     key: "/",
     label: "Boas-vindas",
-    icon: <HomeOutlined />,
+    icon: <FaHome />,
   },
   {
     key: "/",
     label: "Meus Anúncios",
-    icon: <NotificationOutlined />,
+    icon: <FaBell />,
   },
   {
     key: "/residents",
     label: "Moradores",
-    icon: <TeamOutlined />,
+    icon: <FaUsers />,
   },
   {
     key: "/tasks",
     label: "Tarefas",
-    icon: <CheckSquareOutlined />,
+    icon: <FaTasks />,
   },
   {
     key: "/settings",
     label: "Configurações",
-    icon: <SettingOutlined />,
+    icon: <FaCog />,
   },
 ];

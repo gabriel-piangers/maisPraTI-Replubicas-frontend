@@ -4,6 +4,7 @@
   background-color: var(--btn-color);
   padding: 0.5rem 1rem;
   border-radius: 8px;
+  color: white;
   transition: all 0.2s;
   cursor: pointer;
 }
