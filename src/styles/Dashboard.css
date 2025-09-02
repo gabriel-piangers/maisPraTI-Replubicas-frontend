@@ -1,0 +1,182 @@
+.layout {
+  min-height: 100vh;
+}
+
+.sider {
+  padding: 90px 0 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100vh;
+  z-index: 1000;
+  background: #fff;
+}
+
+.siderDivider {
+  height: 1px;
+  background: #eee;
+  margin: 8px 12px 12px;
+}
+
+.siderUser {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  margin-bottom: 4px;
+}
+
+.siderUserAvatar {
+  background: #e91e63;
+  color: #fff;
+  font-weight: 600;
+}
+
+.siderUserInfo {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.siderUserName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.siderUserRole {
+  font-size: 12px;
+  color: #8c8c8c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sider .ant-menu-item:hover {
+  background-color: #ffe6f0 !important;
+  color: #e91e63 !important;
+}
+
+.sider .ant-menu-item-selected {
+  background-color: #e91e63 !important;
+  color: #fff !important;
+}
+
+.ant-layout-sider-trigger {
+  background: #ffe6f0 !important;
+  color: #e91e63 !important;
+  border-top: 1px solid #f2f2f2;
+}
+
+.ant-layout-sider-trigger:hover {
+  background: #ffc1d6 !important;
+  color: #e91e63 !important;
+}
+
+.siderLogout {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 56px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  background: #fff;
+  border-top: 1px solid #eee;
+  user-select: none;
+}
+
+.siderLogoutIcon {
+  font-size: 16px;
+  color: #e91e63;
+}
+
+.siderLogoutLabel {
+  color: #000;
+  font-size: 14px;
+}
+
+.siderLogout:hover {
+  background: #ffe6f0;
+}
+
+.siderLogout:hover .siderLogoutLabel {
+  color: #e91e63;
+}
+
+.siderCollapsed .siderLogout {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.siderCollapsed .siderLogoutLabel {
+  display: none;
+}
+
+.content {
+  margin-left: 240px;
+  transition: margin-left 0.3s ease;
+}
+
+.contentCollapsed {
+  margin-left: 60px;
+}
+
+.wrapper {
+  padding: 32px;
+}
+
+@media (max-width: 992px) {
+  .content {
+    margin-left: 60px;
+  }
+  .wrapper {
+    padding: 16px;
+  }
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 70px;
+  cursor: pointer;
+}
+
+.logoMobile {
+  display: block;
+  width: 1.5rem;
+  height: auto;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+}
+
+.styledText {
+  color: #e91e63;
+  font-size: 1.5rem;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  transition: opacity 0.3s ease;
+}
+
+@media (min-width: 993px) {
+  .overlay {
+    display: none;
+  }
+}
