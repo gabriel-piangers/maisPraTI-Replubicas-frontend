@@ -1,0 +1,170 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+
+form label {
+    display: block;
+    font-size: 14px;
+}
+
+form input[type="text"],
+form input[type="tel"],
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 8px;
+    padding: 10px 6px;
+    outline: none;
+    border: 2px solid #ccc;
+    transition: all .35s ease-in-out;
+    margin-top: 2px;
+}
+
+form input[type="text"]:focus,
+form input[type="tel"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus {
+    border: 2px solid var(--btn-color);
+    box-shadow: 0 0 0 0.2rem rgb(243, 105, 133, 0.6);
+}
+
+form input[type="text"]:hover,
+form input[type="tel"]:hover,
+form input[type="email"]:hover,
+form input[type="password"]:hover {
+    border: 2px solid var(--btn-color);
+}
+
+form input[type="text"]::placeholder,
+form input[type="tel"]::placeholder,
+form input[type="email"]::placeholder,
+form input[type="password"]::placeholder {
+    font-size: 16px;
+}
+
+
+.terms-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    width: fit-content;
+    margin-top: 5px;
+}
+
+.terms-checkbox input {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 2px solid var(--btn-color);
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.terms-checkbox input:checked {
+    background-color: var(--btn-color);
+    border-color: var(--btn-color);
+}
+
+.terms-checkbox input:checked::after {
+    content: "✔";
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    top: -2px;
+    left: 3px;
+}
+
+
+.terms-checkbox .terms-link {
+    color: #E85A4F;
+    margin-left: 4px;
+}
+
+.terms-checkbox .terms-link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.input-icon-btn {
+    position: absolute;
+    right: 10px;
+    transition: all .4s ease-in-out;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 2px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon-btn:hover {
+    background-color: rgb(243, 105, 133, 0.30);
+}
+
+.required-field {
+    color: red;
+    margin-left: 4px;
+}
+
+.error-visible {
+  font-size: 12px;
+  color: red;
+  min-height: 16px;
+  visibility: hidden;
+}
+
+.error-visible:not(:empty) {
+  visibility: visible;
+}
+
+.btn-register {
+    background-color: var(--btn-color);
+    color: #fff;
+    padding: 12px 32px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: 
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.btn-register:hover {
+    background-color: #ff6b81;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.btn-register:active {
+    background-color: #e0556d;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-register:focus {
+    outline: 3px solid rgba(243, 105, 133, 0.5);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 4px rgba(243, 105, 133, 0.2);
+}

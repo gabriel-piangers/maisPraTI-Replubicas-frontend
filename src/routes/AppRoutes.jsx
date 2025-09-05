@@ -11,11 +11,11 @@ export const AppRoutes = () => {
       <Routes>
         <Route element={<AuthLayout showHeader />}>
           <Route index element={<HomePage />} />
-
           <Route path="dashboard" element={<DashboardLayout />}>
             <Route path="residents" element={<ResidentsPage />} />
           </Route>
         </Route>
+        <Route path="/register" element={<RegisterPage />} />
       </Routes>
     </BrowserRouter>
   );
