@@ -13,10 +13,7 @@ export default function RegisterPage() {
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: zodResolver(registerSchema),
-        defaultValues: {
-            accountType: "", // valor inicial vazio
-        },
+        resolver: zodResolver(registerSchema)
     });
     const registerWithMask = useHookFormMask(register)
 
@@ -44,7 +41,7 @@ export default function RegisterPage() {
                                 placeholder='Digite seu nome completo'
                                 {...register("name")}
                             />
-                            <small className={errors.name ? "error-visible" : "error-hidden"}>
+                            <small className="error-visible">
                                 {errors.name?.message || "⠀"}
                             </small>
                         </div>
@@ -56,7 +53,7 @@ export default function RegisterPage() {
                                 placeholder='Digite seu email'
                                 {...register("email")}
                             />
-                            <small className={errors.email ? "error-visible" : "error-hidden"}>
+                            <small className="error-visible">
                                 {errors.email?.message || "⠀"}
                             </small>
                         </div>
@@ -68,7 +65,7 @@ export default function RegisterPage() {
                                 placeholder='(99) 99999-9999'
                                 {...registerWithMask("phone", "(99) 99999-9999")}
                             />
-                            <small className={errors.phone ? "error-visible" : "error-hidden"}>
+                            <small className="error-visible">
                                 {errors.phone?.message || "⠀"}
                             </small>
                         </div>
@@ -99,7 +96,7 @@ export default function RegisterPage() {
                                     </button>
                                 )}
                             </div>
-                            <small className={errors.password ? "error-visible" : "error-hidden"}>
+                            <small className="error-visible">
                                 {errors.password?.message || "⠀"}
                             </small>
                         </div>
@@ -130,45 +127,11 @@ export default function RegisterPage() {
                                     </button>
                                 )}
                             </div>
-                            <small className={errors.confirmation_password ? "error-visible" : "error-hidden"}>
+                            <small className="error-visible">
                                 {errors.confirmation_password?.message || "⠀"}
                             </small>
                         </div>
                     </div>
-
-                    <div className="account-type">
-                        <label>Tipo de Conta<span className='required-field'>*</span></label>
-                        <div className='account-type-options'>
-                            <div className='account-type-inquilino'>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        id="accountTypeInquilino"
-                                        value="inquilino"
-                                        {...register("accountType")}
-                                    />
-                                    <User size={18} style={{ marginRight: "6px" }} />
-                                    Inquilino
-                                </label>
-                            </div>
-                            <div className="account-type-anunciante">
-                                <label>
-                                    <input
-                                        type="radio"
-                                        id="accountTypeAnunciante"
-                                        value="anunciante"
-                                        {...register("accountType")}
-                                    />
-                                    <Building size={18} style={{ marginRight: "6px" }} />
-                                    Anunciante
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <small className="error-visible">
-                        {errors.accountType?.message}
-                    </small>
-
                     <div className="form-field">
                         <label htmlFor='terms' className='terms-checkbox'>
                             <input

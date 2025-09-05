@@ -14,7 +14,6 @@ export const registerSchema = z.object({
   confirmation_password: z.string()
     .min(1, { message: "O campo confirmar senha é obrigatório" })
     .min(8, { message: "A senha deve ter no mínimo 8 caracteres" }),
-  accountType: z.string().min(1, { message: "Selecione um tipo de conta" }),
   terms: z.boolean().refine((val) => val === true, {
     message: "Você precisa aceitar os termos de uso.",
   }),
