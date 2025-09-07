@@ -3,6 +3,7 @@ import { HomePage } from "../pages/HomePage";
 
 import { AuthLayout } from "../layouts/AuthLayout";
 import { DashboardLayout } from "../layouts/DashboardLayout";
+import { ResidentsPage } from "../pages/ResidentsPage";
 
 export const AppRoutes = () => {
   return (
@@ -12,7 +13,7 @@ export const AppRoutes = () => {
           <Route index element={<HomePage />} />
 
           <Route path="dashboard" element={<DashboardLayout />}>
-          
+            <Route path="residents" element={<ResidentsPage />} />
           </Route>
         </Route>
       </Routes>
