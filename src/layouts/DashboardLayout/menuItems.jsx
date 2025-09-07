@@ -8,27 +8,27 @@ import {
 
 export const menuItems = [
   {
-    key: "/",
+    key: "/", // 
     label: "Boas-vindas",
     icon: <FaHome />,
   },
   {
-    key: "/",
+    key: "/dashboard/ads", 
     label: "Meus Anúncios",
     icon: <FaBell />,
   },
   {
-    key: "/residents",
+    key: "/dashboard/residents", 
     label: "Moradores",
     icon: <FaUsers />,
   },
   {
-    key: "/tasks",
+    key: "/dashboard/tasks", 
     label: "Tarefas",
     icon: <FaTasks />,
   },
   {
-    key: "/settings",
+    key: "/dashboard/settings", 
     label: "Configurações",
     icon: <FaCog />,
   },
