@@ -1,0 +1,31 @@
+
+.list-item {
+  background-color: rgb(255 131 140);
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.list-item-content {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+}
+
+
+.list-item-content input {
+  padding: 0.3rem;
+  background-color: inherit;
+  border: solid 2px rgb(233 30 99);
+  border-radius: 8px;
+  color: inherit;
+}
+
+.list-item-content input:focus {
+  outline: none;
+}
+
+.list-item-content > div > label, .list-item-content > div > p {
+  padding: 0.5rem 0;
+  display: block;
+}

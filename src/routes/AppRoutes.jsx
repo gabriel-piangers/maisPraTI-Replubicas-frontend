@@ -3,6 +3,7 @@ import { HomePage } from "../pages/HomePage";
 
 import { AuthLayout } from "../layouts/AuthLayout";
 import { DashboardLayout } from "../layouts/DashboardLayout";
+import { Moradores } from "../components/Moradores/Moradores"
 
 export const AppRoutes = () => {
   return (
@@ -10,9 +11,8 @@ export const AppRoutes = () => {
       <Routes>
         <Route element={<AuthLayout showHeader />}>
           <Route index element={<HomePage />} />
-
           <Route path="dashboard" element={<DashboardLayout />}>
-          
+            <Route path="residents" element={< Moradores />} />
           </Route>
         </Route>
       </Routes>

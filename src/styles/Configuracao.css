@@ -1,0 +1,11 @@
+@import url("./DashboardCards.css");
+
+
+.casa {
+  padding: 0.5rem;
+  flex-direction: column;
+}
+
+.casa-card {
+  width: 100%;
+}

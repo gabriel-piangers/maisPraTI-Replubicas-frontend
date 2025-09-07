@@ -4,6 +4,8 @@ import {
   FaBell,
   FaCog,
   FaTasks,
+  FaWallet,
+  FaBed,
 } from "react-icons/fa";
 
 export const menuItems = [
@@ -13,14 +15,24 @@ export const menuItems = [
     icon: <FaHome />,
   },
   {
-    key: "/",
+    key: "/announcements",
     label: "Meus Anúncios",
     icon: <FaBell />,
   },
   {
-    key: "/residents",
+    key: "./residents",
     label: "Moradores",
     icon: <FaUsers />,
+  },
+  {
+    key: "/rooms",
+    label: "Quartos",
+    icon: <FaBed />,
+  },
+  {
+    key: "/expenses",
+    label: "Despesas",
+    icon: <FaWallet />,
   },
   {
     key: "/tasks",

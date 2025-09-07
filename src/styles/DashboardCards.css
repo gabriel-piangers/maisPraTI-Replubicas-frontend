@@ -1,0 +1,40 @@
+.std-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    min-height: 23vw;
+    width: 30vw;
+    min-width: 160px;
+    margin: 0 0.5rem 1rem 0.5rem;
+    padding: 1rem 1rem 3rem 1rem;
+    background-color: rgb(233 30 99);
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
+}
+
+.status-morador-card {
+  width: 29vw;
+}
+
+.status-casa-card {
+  width: 100%;
+  flex-direction: column;
+}
+
+.std-card h3 {
+  height: 1.7rem;
+  width: 100%;
+  border-bottom: solid 1px currentColor;
+}
+
+.std-card input, .card a {
+  align-self: flex-end;
+  margin: 0 0.5rem;
+}
+
+.std-card ol {
+  width: 96%;
+  align-self: flex-end;
+}

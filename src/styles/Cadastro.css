@@ -1,0 +1,41 @@
+.std-cadastro {
+  background-color: rgb(233 30 99);
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  min-width: 260px;
+  padding: 3rem;
+  border-radius: 8px;
+}
+.std-cadastro label {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5em 0;
+}
+
+.std-cadastro input {
+  padding: 0.3rem;
+  background-color: inherit;
+  border: solid 2px currentColor;
+  border-radius: 8px;
+  color: white;
+}
+
+.std-cadastro label > input[type="text"] {
+  padding: 0.3rem;
+  background-color: rgb(255 131 140);
+  border: solid 2px currentColor;
+  border-radius: 8px;
+  color: white;
+}
+
+.std-cadastro input:focus {
+  outline: none;
+}
+
+.std-cadastro input[type="submit"] {
+  width: 70px;
+  align-self: flex-end;
+}
+
