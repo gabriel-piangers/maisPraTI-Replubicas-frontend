@@ -4,6 +4,13 @@ import { useHookFormMask } from 'use-mask-input';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "../schemas/register";
 import { LuEye, LuEyeOff } from "react-icons/lu";
+import { FaUser } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { MdLocalPhone } from "react-icons/md";
+import { FaIdCard } from "react-icons/fa6";
+import { RiLockPasswordFill } from "react-icons/ri";
+
+
 
 import "../styles/RegisterForm.css";
 
@@ -24,24 +31,30 @@ function RegisterForm({ onSubmit }) {
           <label htmlFor="name">
             Nome Completo<span className="required-field">*</span>
           </label>
-          <input
-            type="text"
-            id="name"
-            placeholder="Digite seu nome completo"
-            {...register("name")}
-          />
+          <div className="input-group">
+            <input
+              type="text"
+              id="name"
+              placeholder="Digite seu nome completo"
+              {...register("name")}
+            />
+            <FaUser size={17} className="input-icon-left" />
+          </div>
           <small className="error-visible">{errors.name?.message || "⠀"}</small>
         </div>
         <div className="form-field">
           <label htmlFor="email">
             Email<span className="required-field">*</span>
           </label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Digite seu email"
-            {...register("email")}
-          />
+          <div className="input-group">
+            <input
+              type="email"
+              id="email"
+              placeholder="Digite seu email"
+              {...register("email")}
+            />
+            <MdEmail className="input-icon-left" />
+          </div>
           <small className="error-visible">
             {errors.email?.message || "⠀"}
           </small>
@@ -50,12 +63,15 @@ function RegisterForm({ onSubmit }) {
           <label htmlFor="phone">
             Telefone<span className="required-field">*</span>
           </label>
-          <input
-            type="tel"
-            id="phone"
-            placeholder="(99) 99999-9999"
-            {...registerWithMask("phone", "(99) 99999-9999")}
-          />
+          <div className="input-group">
+            <input
+              type="tel"
+              id="phone"
+              placeholder="(99) 99999-9999"
+              {...registerWithMask("phone", "(99) 99999-9999")}
+            />
+            <MdLocalPhone className="input-icon-left" />
+          </div>
           <small className="error-visible">
             {errors.phone?.message || "⠀"}
           </small>
@@ -64,12 +80,15 @@ function RegisterForm({ onSubmit }) {
           <label htmlFor="cpf">
             CPF<span className="required-field">*</span>
           </label>
-          <input
-            type="text"
-            id="cpf"
-            placeholder="000.000.000-00"
-            {...registerWithMask("cpf", "999.999.999-99")}
-          />
+          <div className="input-group">
+            <input
+              type="text"
+              id="cpf"
+              placeholder="000.000.000-00"
+              {...registerWithMask("cpf", "999.999.999-99")}
+            />
+            <FaIdCard size={19} className="input-icon-left" />
+          </div>
           <small className="error-visible">{errors.cpf?.message || "⠀"}</small>
         </div>
         <div className="form-field">
@@ -83,6 +102,7 @@ function RegisterForm({ onSubmit }) {
               placeholder="Digite sua senha"
               {...register("password")}
             />
+            <RiLockPasswordFill className="input-icon-left" />
             {showPassword ? (
               <button
                 className="input-icon-btn"
@@ -116,6 +136,7 @@ function RegisterForm({ onSubmit }) {
               placeholder="Confirme sua senha"
               {...register("confirmation_password")}
             />
+            <RiLockPasswordFill className="input-icon-left" />
             {showPasswordConfirmation ? (
               <button
                 className="input-icon-btn"

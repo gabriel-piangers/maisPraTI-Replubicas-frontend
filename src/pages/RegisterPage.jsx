@@ -16,7 +16,7 @@ export default function RegisterPage() {
           <h1>Criar Conta</h1>
           <div className="divider">ou</div>
           <p>
-            <Link to="/" className="login-link">
+            <Link to="/login" className="login-link">
               🔑 Já tem conta? Faça login aqui
             </Link>
           </p>
