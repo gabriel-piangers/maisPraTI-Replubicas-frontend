@@ -4,6 +4,8 @@ import { HomePage } from "../pages/HomePage";
 import { AuthLayout } from "../layouts/AuthLayout";
 import { DashboardLayout } from "../layouts/DashboardLayout";
 import { ResidentsPage } from "../pages/ResidentsPage";
+import LoginPage from "../pages/LoginPage";
+import RegisterPage from "../pages/RegisterPage";
 
 export const AppRoutes = () => {
   return (
