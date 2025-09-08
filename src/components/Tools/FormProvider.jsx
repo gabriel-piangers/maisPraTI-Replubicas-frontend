@@ -36,8 +36,8 @@ class Context {
 const FormContext = createContext()
 const SelectContext = createContext()
 
-export function FormProvider (props) {
-    const context = useMemo(()=> new Context(), [])
+export function FormProvider(props) {
+    const context = useMemo(() => new Context(), [])
     return (
         <FormContext.Provider value={context}>
             {props.children}
@@ -45,75 +45,114 @@ export function FormProvider (props) {
     )
 }
 
-export function Input (props) {
+export function Input(props) {
     const [input, setInput] = useState(props.hasOwnProperty('value') ? props.value : '')
     const context = useContext(FormContext)
     context.setup(props.name, [input, setInput])
     const onChange = props.onChange || (() => { })
-    function changeField (e) {
+    function changeField(e) {
         onChange.call(e.target, e)
         setInput(e.target.value)
     }
-    return <input type={props.type || 'text'} name={props.name}  className={props.className} value={input} onChange={changeField} />
+    return <input type={props.type || 'text'} name={props.name} className={props.className} value={input} onChange={changeField} />
 }
 
-function getChecked (props) {
-    return props.checked ? props.value || true : '' 
+function getChecked(props) {
+    return props.checked ? props.value || true : ''
 }
 
-export function Checkbox (props) {
+export function Checkbox(props) {
     const [input, setInput] = useState(getChecked(props))
     const context = useContext(FormContext)
     context.setup(props.name, [input, setInput])
     const onChange = props.onChange || (() => { })
-    function changeField (e) {console.log(e.target.value)
+    function changeField(e) {
+        console.log(e.target.value)
         onChange.call(e.target, e)
         setInput(getChecked(e.target))
     }
-    return <input type='checkbox' name={props.name} checked={input && true || false}  className={props.className} value={input} onChange={changeField} />
+    return <input type='checkbox' name={props.name} checked={input && true || false} className={props.className} value={input} onChange={changeField} />
 }
 
-export function RadioGroup (props) {
+export function RadioGroup(props) {
     const [input, setInput] = useState(props.value)
     const radiosSetChecked = useMemo(() => ({}), [])
     const context = useContext(FormContext)
-    const onChange = props.onChange || (() => {})
+    const onChange = props.onChange || (() => { })
     context.setup(props.name, [input, (value) => {
         for (var key in radiosSetChecked) {
             if (radiosSetChecked.hasOwnProperty(key)
-            && key !== value) {
+                && key !== value) {
+                delete radiosSetChecked[key]
                 const setChecked = radiosSetChecked[key]
                 setChecked(false)
             }
         }
-        onChange({target: {value}})
+        onChange({ target: { value } })
         setInput(value)
     }])
     return <SelectContext.Provider value={radiosSetChecked}>
-         {props.children}
+        {props.children}
     </SelectContext.Provider>
 }
 
-export function Radio (props) {
+export function Radio(props) {
     const context = useContext(FormContext)
     const [checked, setChecked] = useState(props.value === context.get(props.name))
     useContext(SelectContext)[props.value] = setChecked
-    const onChange = props.onChange || (() => {})
-    function changeField (e) {
+    const onChange = props.onChange || (() => { })
+    function changeField(e) {
         setChecked(true)
         onChange.call(e.targer, e)
         context.set(props.name, e.target.value)
     }
-    return <input type='radio' name={props.name} checked={checked} className={props.className} value={props.value} onChange={changeField} />
+    return <input type='radio' name={props.name} checked={checked} className={props.className || ""} value={props.value} onChange={changeField} />
 }
 
-export function Submit (props) {
-    var submit = props.submit || (() => {})
+export function Selection(props) {
+    const [input, setInput] = useState(props.value)
+    const selectSetChecked = useMemo(() => ({}), [])
+    const context = useContext(FormContext)
+    const onChange = props.onChange || (() => { })
+    context.setup(props.name, [input, (value) => {
+        for (var key in selectSetChecked) {
+            if (selectSetChecked.hasOwnProperty(key)
+                && key !== value) {
+                delete selectSetChecked[key]
+                const setSelect = selectSetChecked[key]
+                setSelect(false)
+            }
+        }
+        onChange({ target: { value } })
+        setInput(value)
+    }])
+    return <SelectContext.Provider value={selectSetChecked}>
+        <selection className={props.className || ''} >
+            {props.children}
+        </selection>
+    </SelectContext.Provider>
+}
+
+export function Option (props) {
+    const context = useContext(FormContext)
+    const [selected, setSelect] = useState(props.value === context.get(props.name))
+    useContext(SelectContext)[props.value] = setSelect
+    const onChange = props.onChange || (() => { })
+    function changeField(e) {
+        setSelect(true)
+        onChange.call(e.targer, e)
+        context.set(props.name, e.target.value)
+    }
+    return <option name={props.name} selected={selected} className={props.className || ""} value={props.value} onChange={changeField} />
+}
+
+export function Submit(props) {
+    var submit = props.submit || (() => { })
     var outSubmit = props.outSubmit || {}
     var context = useContext(FormContext)
     function onClick(e) {
         submit(context)
     }
     outSubmit.out = onClick
-    return <input type='button' id={props.id} className={props.className} value={props.value} onClick={onClick} />
+    return <input type='button' id={props.id || ""} className={props.className || ""} value={props.value} onClick={onClick} />
 }
