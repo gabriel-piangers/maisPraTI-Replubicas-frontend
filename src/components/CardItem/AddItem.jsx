@@ -1,20 +1,17 @@
 import "../../styles/DashBoardItem.css"
+import { Button } from "antd";
+import { FaPlus } from "react-icons/fa";
 import { Modal } from "../Tools/Modal"
-import { FaPlusCircle } from "react-icons/fa"
 
 export function AddItem(props) {
     return (
         <>
-            <div className="bottom-line" >
-                <label
-                    className='add-item item-icon'
-                    onClick={(e) => {
-                        e.stopPropagation()
-                        props.activeModal.out(true)
-                    }}>
-                    <FaPlusCircle />
-                </label>
-            </div>
+            <Button type="primary" icon={<FaPlus />} className="btn-edit" onClick={(e) => {
+                e.stopPropagation()
+                props.activeModal.out(true)
+            }}>
+                Adicionar Morador
+            </Button>
             <Modal activeModal={props.activeModal}>
                 <div className="outer-modal" onClick={() => props.activeModal.out(false)}>
                     <div onClick={(e) => e.stopPropagation()} >

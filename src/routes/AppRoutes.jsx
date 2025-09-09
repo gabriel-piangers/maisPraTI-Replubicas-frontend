@@ -3,7 +3,7 @@ import { HomePage } from "../pages/HomePage";
 
 import { AuthLayout } from "../layouts/AuthLayout";
 import { DashboardLayout } from "../layouts/DashboardLayout";
-import { ResidentsPage } from "../pages/ResidentsPage";
+import { Moradores as ResidentsPage } from "../components/Moradores/Moradores";
 
 export const AppRoutes = () => {
   return (

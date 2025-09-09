@@ -1,24 +1,32 @@
-import "../../styles/ListItem.css"
+import "../../styles/ResidentsPage.css";
+import { Card, Typography, Flex } from "antd";
 import { CadastroMorador } from "./CadastroMorador"
 import { Morador } from "./Morador"
 import { AddItem } from "../CardItem/AddItem"
+import { useContext, useState } from "react";
+import { ModelContext } from "../Tools/ModelProvider";
 
-export function ListaMoradores(props) {
+const Title = { Typography }
+
+export function ListaMoradores(props) {console.log(33)
+    const model = useContext(ModelContext)
+    const [moradores, setMoradores] = useState([])
+    model.subscribe('moradores', setMoradores)
     function setMorador(index, inputs) {
-        const newMoradores = Array.from(props.moradores)
+        const newMoradores = Array.from(moradores)
         newMoradores[index] = {
-            nome: inputs.has('nome') ? inputs.get('nome') : props.moradores[index].nome,
-            administrador: inputs.has('administrador') ? inputs.get('administrador') : props.moradores[index].administrador,
+            nome: inputs.has('nome') ? inputs.get('nome') : moradores[index].nome,
+            administrador: inputs.has('administrador') ? inputs.get('administrador') : moradores[index].administrador,
         }
-        props.setMoradores(newMoradores)
+        model.dispatch('moradores.set', newMoradores)
     }
     function addMorador(inputs) {
-        setMorador(props.moradores.length, inputs)
+        setMorador(moradores.length, inputs)
     }
     function createRemove(index) {
         return function removeMorador() {
-            props.moradores.splice(index, 1)
-            props.setMoradores(Array.from(props.moradores))
+            moradores.splice(index, 1)
+            model.dispatch('moradores.set', Array.from(moradores))
         }
     }
     function createEdit(index) {
@@ -27,25 +35,33 @@ export function ListaMoradores(props) {
         }
     }
     const activeModal = { out: () => { } }
+
     return (
+
         <>
-            <ol>
+            <Flex justify="space-between" align="center" className="residents-header">
+                <Title level={2} className="residents-title">
+                    Moradores
+                </Title>
+                <AddItem activeModal={activeModal}>
+                    <CadastroMorador activeModal={activeModal} addMorador={addMorador} />
+                </AddItem>
+            </Flex>
+
+            <Flex vertical gap={20}>
                 {
-                    props.moradores.map((morador, index) => {
+                    moradores.map((morador, index) => {
                         return (
-                            <li key={morador.nome}>
-                                <div className='list-item' >
+                            <Card className="resident-card" key={morador.nome}>
+                                <div className="resident-card-container">
                                     <Morador morador={morador} editItem={createEdit(index)}
                                         removeItem={createRemove(index)} />
                                 </div>
-                            </li>
+                            </Card>
                         )
                     })
                 }
-            </ol>
-            <AddItem activeModal={activeModal}>
-                <CadastroMorador activeModal={activeModal} addMorador={addMorador} />
-            </AddItem>
+            </Flex>
         </>
     )
 }

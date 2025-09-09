@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { mock, morador } from "./assets/mock"
 import { Model, ModelProvider as Provider } from "./components/Tools/ModelProvider"
 
@@ -18,12 +17,9 @@ const mainModel = new Model({
   })
 })
 
+const model = mainModel.make({ morador })
+
 export function ModelProvider(props) {
-  const model=mainModel.make({ morador })
-  useEffect (()=> {
-    model.dispatch('usuario', morador)
-    model.dispatch('moradores.set')
-  }, [])
   return (
     <Provider model={model}>
       {props.children}

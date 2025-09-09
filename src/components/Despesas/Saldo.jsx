@@ -1,4 +1,3 @@
-import "../styles/Button.css"
 import { useState, useContext } from "react"
 import { ModelContext } from '../Tools/ModelProvider'
 

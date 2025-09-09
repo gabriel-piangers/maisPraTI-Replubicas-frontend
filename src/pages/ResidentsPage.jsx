@@ -18,30 +18,35 @@ export const ResidentsPage = () => {
 
       <Flex vertical gap={20}>
         <Card className="resident-card">
-          <div className="resident-card-content">
-            <Flex gap={16} align="center">
-              <Avatar className="resident-avatar" size={48}>
-                R
-              </Avatar>
-              <Flex vertical>
-                <Text strong className="resident-name">
-                  Rafael Santos
-                </Text>
-                <Space size="middle">
-                  <Text type="secondary">Quarto 1</Text>
-                  <Text type="secondary">•</Text>
-                  <Text type="secondary">(11) 99999-1111</Text>
-                </Space>
+          <div className="resident-card-container">
+            <div className="resident-card-content">
+              <Flex gap={16} align="center" wrap>
+                <Avatar className="resident-avatar" size={48}>
+                  R
+                </Avatar>
+                <Flex vertical>
+                  <Text strong className="resident-name">
+                    Rafael Santos
+                  </Text>
+                  <Space size="middle">
+                    <Text type="secondary">Quarto 1</Text>
+                    <Text type="secondary">•</Text>
+                    <Text type="secondary">(11) 99999-1111</Text>
+                  </Space>
+                </Flex>
               </Flex>
-            </Flex>
 
-            <Flex align="center" gap={32}>
-              <Flex vertical align="end">
-                <Text strong className="resident-value">
-                  R$ 800,00
-                </Text>
-                <Badge color="#ff0000" text="Atrasado" />
+              <Flex align="center" gap={32} wrap>
+                <Flex vertical align="end">
+                  <Text strong className="resident-value">
+                    R$ 800,00
+                  </Text>
+                  <Badge color="#ff0000" text="Atrasado" />
+                </Flex>
               </Flex>
+            </div>
+
+            <Flex align="center">
               <Button icon={<FaEdit />}>Editar</Button>
             </Flex>
           </div>
