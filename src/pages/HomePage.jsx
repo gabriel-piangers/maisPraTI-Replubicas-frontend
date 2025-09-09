@@ -1,4 +1,4 @@
-import { FirstSection } from "../components/firstSection";
+import { FirstSection } from "../components/FirstSection";
 import { AboutCards } from "../components/AboutCards";
 import { Footer } from "../components/Footer";
 import { ExploreCategories } from "../components/ExploreCategories";
