@@ -6,9 +6,9 @@ import { AddItem } from "../CardItem/AddItem"
 import { useContext, useState } from "react";
 import { ModelContext } from "../Tools/ModelProvider";
 
-const Title = { Typography }
+const { Title } = Typography
 
-export function ListaMoradores(props) {console.log(33)
+export function ListaMoradores(props) {
     const model = useContext(ModelContext)
     const [moradores, setMoradores] = useState([])
     model.subscribe('moradores', setMoradores)
@@ -36,8 +36,18 @@ export function ListaMoradores(props) {console.log(33)
     }
     const activeModal = { out: () => { } }
 
-    return (
+    const cards = moradores.map((morador, index) => {
+        return (
+            <Card className="resident-card" key={morador.nome}>
+                <div className="resident-card-container">
+                    <Morador morador={morador} editItem={createEdit(index)}
+                        removeItem={createRemove(index)} />
+                </div>
+            </Card>
+        )
+    })
 
+    return (
         <>
             <Flex justify="space-between" align="center" className="residents-header">
                 <Title level={2} className="residents-title">
@@ -49,18 +59,7 @@ export function ListaMoradores(props) {console.log(33)
             </Flex>
 
             <Flex vertical gap={20}>
-                {
-                    moradores.map((morador, index) => {
-                        return (
-                            <Card className="resident-card" key={morador.nome}>
-                                <div className="resident-card-container">
-                                    <Morador morador={morador} editItem={createEdit(index)}
-                                        removeItem={createRemove(index)} />
-                                </div>
-                            </Card>
-                        )
-                    })
-                }
+                {cards}
             </Flex>
         </>
     )

@@ -8,23 +8,17 @@ export function EditItem(props) {
     return (
         <FormProvider>
             <>
-                <div className={'list-item-content'}>
-                    <div>
-                        {props.children}
-                    </div>
-                    {
-                        editMode
-                            ? <CloseIcon setEditMode={setEditMode} />
-                            : <EditIcon editItem={() => setEditMode(true)} />
-                    }
-                </div>
+                {props.children}
                 {
                     editMode
-                    && <div className="bottom-line">
-                        <EditButtons editItem={editItem} removeItem={removeItem} setEditMode={setEditMode} />
-                    </div>
+                        ? <>
+                            <CloseIcon setEditMode={setEditMode} />
+                            <div className="bottom-line">
+                                <EditButtons editItem={editItem} removeItem={removeItem} setEditMode={setEditMode} />
+                            </div>
+                        </>
+                        : <EditIcon editItem={() => setEditMode(true)} />
                 }
-
             </>
         </FormProvider>
     )

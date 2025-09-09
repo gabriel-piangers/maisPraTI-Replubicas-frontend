@@ -1,4 +1,4 @@
-import { Flex } from "antd"
+import { Flex, Button } from "antd"
 import { FaEdit } from "react-icons/fa"
 
 export function EditIcon(props) {

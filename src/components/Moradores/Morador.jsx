@@ -1,11 +1,11 @@
-import { Flex, Typography, Space } from "antd";
+import { Flex, Typography, Space, Avatar } from "antd";
 import { EditItem } from "../CardItem/EditItem"
 import { useState } from "react"
 import { Checkbox, Input } from "../Tools/FormProvider"
 import { FaCheck } from "react-icons/fa"
 import { Saldo } from "../Despesas/Saldo"
 
-const Text = {Typography}
+const { Text } = Typography
 
 export function Morador(props) {
 
@@ -37,7 +37,7 @@ export function Morador(props) {
                                 </Avatar>
                                 <Flex vertical>
                                     <Text strong className="resident-name">
-                                        Rafael Santos
+                                        {props.morador.nome}
                                     </Text>
                                     <Space size="middle">
                                         <Text type="secondary">Quarto {props.morador.quarto}</Text>
@@ -60,7 +60,7 @@ export function Morador(props) {
                             <Flex align="center" gap={32}>
                                 <Flex vertical align="end">
                                     <Text strong className="resident-value">
-                                        Saldo: <Saldo morador={props.morador.nome} />
+                                        Saldo: <Saldo nomeMorador={props.morador.nome} />
                                     </Text>
                                 </Flex>
                             </Flex>
