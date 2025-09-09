@@ -5,6 +5,7 @@ import { registerSchema } from "../schemas/register";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
+import { TbArrowBack } from "react-icons/tb";
 import "../styles/LoginPage.css";
 import logo from "../assets/logo.png";
 
@@ -33,6 +34,10 @@ function LoginPage() {
           <img src={logo} alt="Logo" />
           <h1>Bem-vindo de volta!</h1>
           <p>Faça login para continuar</p>
+          <Link to="/" className="btn-return">
+            <TbArrowBack size={19} />
+            Home
+          </Link>
         </header>
         <div className="card">
           <form onSubmit={handleSubmit(onSubmit)}>

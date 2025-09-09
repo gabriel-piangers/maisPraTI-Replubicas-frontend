@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import logo from "../assets/logo.png"
 import "../styles/RegisterPage.css"
+import { TbArrowBack } from "react-icons/tb";
 import RegisterForm from '../components/RegisterForm';
 
 export default function RegisterPage() {
@@ -20,6 +21,10 @@ export default function RegisterPage() {
               🔑 Já tem conta? Faça login aqui
             </Link>
           </p>
+          <Link to="/" className="btn-return">
+            <TbArrowBack size={19} />
+            Home
+          </Link>
         </header>
 
         <section className="register-form">

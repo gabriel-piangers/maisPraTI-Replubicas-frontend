@@ -15,6 +15,7 @@
 
 .register-header {
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -26,8 +27,31 @@
     color: #FFFFFF;
     padding: 1.25rem 0;
 }
+
+
 .register-header img {
     width: 3.125rem;
+}
+
+
+.btn-return {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: absolute;
+  padding: 6px 10px;
+  border-radius: 16px;
+  color: #FFFFFF;
+  top: 1.25rem;
+  left: 1.2rem;
+  background-color: #e97a83;
+  transition: all .3s ease-in-out;
+}
+
+.btn-return:hover {
+  background: #FFFFFF;
+  color: #EB4D5B;
+  transform: scale(1.05);
 }
 
 .register-header .login-link {
