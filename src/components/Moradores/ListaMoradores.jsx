@@ -3,7 +3,7 @@ import { Card, Typography, Flex } from "antd";
 import { CadastroMorador } from "./CadastroMorador"
 import { Morador } from "./Morador"
 import { AddItem } from "../CardItem/AddItem"
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ModelContext } from "../Tools/ModelProvider";
 
 const { Title } = Typography
@@ -12,6 +12,9 @@ export function ListaMoradores(props) {
     const model = useContext(ModelContext)
     const [moradores, setMoradores] = useState([])
     model.subscribe('moradores', setMoradores)
+    useEffect(() => {
+        model.dispatch('moradores.set')
+    }, [])
     function setMorador(index, inputs) {
         const newMoradores = Array.from(moradores)
         newMoradores[index] = {
@@ -40,8 +43,9 @@ export function ListaMoradores(props) {
         return (
             <Card className="resident-card" key={morador.nome}>
                 <div className="resident-card-container">
-                    <Morador morador={morador} editItem={createEdit(index)}
-                        removeItem={createRemove(index)} />
+                    <Morador morador={morador} 
+                    editItem={createEdit(index)}
+                    removeItem={createRemove(index)} />
                 </div>
             </Card>
         )
@@ -53,7 +57,7 @@ export function ListaMoradores(props) {
                 <Title level={2} className="residents-title">
                     Moradores
                 </Title>
-                <AddItem activeModal={activeModal}>
+                <AddItem activeModal={activeModal} label="Adicionar Morador">
                     <CadastroMorador activeModal={activeModal} addMorador={addMorador} />
                 </AddItem>
             </Flex>

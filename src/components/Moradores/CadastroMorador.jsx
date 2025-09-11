@@ -8,7 +8,7 @@ export function CadastroMorador(props) {
             <form className="std-cadastro dashboard-cadastro">
                 <h4>Adicione um morador</h4>
                 <label>
-                    Nome: <Input type="text" value="" name="morador"/>
+                    Nome: <Input type="text" value="" name="nome"/>
                 </label>
                 <Submit value="adicionar" submit={(inputs)=>{
                     inputs.setup('administrador', [true])

@@ -4,6 +4,9 @@ import { ModelContext } from '../Tools/ModelProvider'
 export function decimal(number) {
     return Number(number.toFixed(2)).toLocaleString()
 }
+export function decimalNumber(str) {
+    return Number(/(,[0-9]{1,2}$|.[0-9]{3}$)/.test(str) ? str.replace('.', '').replace(',', '.') : str)
+}
 export function Saldo (props) {
     const model = useContext(ModelContext)
     const [moradores, setMoradores] = useState([])

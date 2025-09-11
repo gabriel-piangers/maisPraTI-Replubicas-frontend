@@ -1,5 +1,5 @@
-import "../styles/DashboardCadastro.css"
-import { FormProvider, Input, Submit } from "./FormProvider"
+import "../../styles/DashboardCadastro.css"
+import { FormProvider, Input, Submit } from "../Tools/FormProvider"
 
 export function CadastroDespesa(props) {
     const addDespesa = props.addDespesa || (()=> {})
@@ -15,9 +15,6 @@ export function CadastroDespesa(props) {
                 </label>
                 <label>
                     Total: <Input type="text" value="" name="total"/>
-                </label>
-                <label>
-                    Cota: <Input type="text" value="" name="cota"/>
                 </label>
                 <Submit value="adicionar" submit={(inputs)=>{
                     addDespesa(inputs)

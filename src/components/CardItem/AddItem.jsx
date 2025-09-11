@@ -10,7 +10,7 @@ export function AddItem(props) {
                 e.stopPropagation()
                 props.activeModal.out(true)
             }}>
-                Adicionar Morador
+                {props.label}
             </Button>
             <Modal activeModal={props.activeModal}>
                 <div className="outer-modal" onClick={() => props.activeModal.out(false)}>

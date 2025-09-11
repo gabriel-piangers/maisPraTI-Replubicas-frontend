@@ -109,41 +109,34 @@ export function Radio(props) {
     return <input type='radio' name={props.name} checked={checked} className={props.className || ""} value={props.value} onChange={changeField} />
 }
 
-export function Selection(props) {
+export function Select (props) {
     const [input, setInput] = useState(props.value)
-    const selectSetChecked = useMemo(() => ({}), [])
     const context = useContext(FormContext)
-    const onChange = props.onChange || (() => { })
+    const onChange = props.onChange || (() => {})
+    function onChangeSelect (e) {
+        onChange(e)
+        setInput(e.target.value)
+    }
     context.setup(props.name, [input, (value) => {
-        for (var key in selectSetChecked) {
-            if (selectSetChecked.hasOwnProperty(key)
-                && key !== value) {
-                delete selectSetChecked[key]
-                const setSelect = selectSetChecked[key]
-                setSelect(false)
-            }
-        }
-        onChange({ target: { value } })
         setInput(value)
     }])
-    return <SelectContext.Provider value={selectSetChecked}>
-        <selection className={props.className || ''} >
+    return (
+        <select className={props.className || ''} value={input} onChange={onChangeSelect}>
             {props.children}
-        </selection>
-    </SelectContext.Provider>
+        </select>
+    )
 }
 
 export function Option (props) {
     const context = useContext(FormContext)
-    const [selected, setSelect] = useState(props.value === context.get(props.name))
-    useContext(SelectContext)[props.value] = setSelect
     const onChange = props.onChange || (() => { })
-    function changeField(e) {
-        setSelect(true)
+    function changeField (e) {
         onChange.call(e.targer, e)
         context.set(props.name, e.target.value)
     }
-    return <option name={props.name} selected={selected} className={props.className || ""} value={props.value} onChange={changeField} />
+    return <option name={props.name} className={props.className || ""} value={props.value} onChange={changeField} >
+        {props.children}
+    </option>
 }
 
 export function Submit(props) {
@@ -154,5 +147,7 @@ export function Submit(props) {
         submit(context)
     }
     outSubmit.out = onClick
-    return <input type='button' id={props.id || ""} className={props.className || ""} value={props.value} onClick={onClick} />
+    return props.hasOwnProperty('wrap')
+        ? <label onClick={onClick}  className={props.className || ""} >{props.children}</label>
+        : <input type='button' id={props.id || ""} className={props.className || ""} value={props.value} onClick={onClick} />
 }

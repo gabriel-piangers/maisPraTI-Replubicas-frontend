@@ -5,32 +5,22 @@ import { SaveButton } from "../CardItem/SaveButton";
 import { CloseEditButton } from "../CardItem/CloseEditButton";
 import { RemoveButton } from "../CardItem/RemoveButton";
 import { EditButton } from "../CardItem/EditButton";
-import { decimal } from "./Saldo";
 
 const { Text } = Typography
 
-export function Despesa(props) {
+export function Quarto(props) {
 
     const [editMode, setEditMode] = useState(false)
     const { editItem, removeItem } = props
     const despesa = props.despesa
 
-    function getCotas() {
-        return props.moradores.map((nome) => {
-            const cota = (despesa.pagamentos.find(([morador]) => morador === nome) || [undefined, 0])[1]
-            return editMode
-                ? <span key={nome}>
-                    <Text type="secondary">
-                        {nome}:
-                    </Text>
-                    {' R$'} <Input value={decimal(cota)} name={'pagamento' + nome} />
-                </span>
-                : <span key={nome}>
-                    <Text type="secondary">
-                        {nome}:
-                    </Text>
-                    {' R$ ' + decimal(cota)}
-                </span>
+    function getOcupantes() {
+        return props.moradores.map(nome => {
+            return (
+                <Text key={nome} type="secondary">
+                    {nome}
+                </Text>
+            )
         })
     }
 
@@ -41,45 +31,55 @@ export function Despesa(props) {
                     <Flex gap={16} align="center" wrap>
                         <Flex vertical>
                             <Text strong className="resident-name">
-                                {despesa.tipo}
+                                Qurato {props.index}
                             </Text>
                             {
                                 editMode
                                     ? <>
                                         <Flex gap={8}>
                                             <Text type="secondary">
-                                                Vencimento:
+                                                Lugares:
                                             </Text>
-                                            <Input value={despesa.vencimento} name='vencimento' />
+                                            <Input value={props.lugares} name='lugares' />
                                         </Flex>
                                         <Flex gap={8}>
                                             <Text type="secondary">
-                                                Valor:
+                                                Suite:
                                             </Text>
-                                            {'R$ '}<Input value={decimal(despesa.total)} name='total' />
+                                            <Input value={props.suite} name='suite' />
+                                        </Flex>
+                                        <Flex gap={8}>
+                                            <Text type="secondary">
+                                                Mobília:
+                                            </Text>
+                                            <Input value={props.mobilia} name='mobilia' />
                                         </Flex>
                                     </>
-                                    : <Space size="middle">
-                                        <Text type="secondary">
-                                            Vencimento:
-                                        </Text>
-                                        {despesa.vencimento}
-
-                                        <Text type="secondary">•</Text>
-                                        <Text type="secondary">
-                                            Valor:
-                                        </Text>
-                                        { 'R$ '}{decimal(despesa.total)}
-                                    </Space>
+                                    : <>
+                                        <Space size="middle">
+                                            <Text type="secondary">
+                                                Lugares: {props.lugares}
+                                            </Text>
+                                            <Text type="secondary">•</Text>
+                                            <Text type="secondary">
+                                                Suite: {props.suite}
+                                            </Text>
+                                        </Space>
+                                        <span>
+                                            <Text type="secondary">
+                                                Mobília: {props.mobilia}
+                                            </Text>
+                                        </span>
+                                    </>
                             }
                         </Flex>
                     </Flex>
 
                     {
                         <Flex gap={32}>
-                            <Text >Pagamentos: </Text>
+                            <Text >Moradores: </Text>
                             <Flex vertical gap={8}>
-                                {getCotas()}
+                                {getOcupantes()}
                             </Flex>
                         </Flex>
                     }

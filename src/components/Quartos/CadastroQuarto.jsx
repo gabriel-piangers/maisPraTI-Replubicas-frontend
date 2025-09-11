@@ -1,8 +1,8 @@
-import "../styles/DashboardCadastro.css"
+import "../../styles/DashboardCadastro.css"
 import { FormProvider, Input, Submit } from "../Tools/FormProvider"
 
-export function CadastroAcomodacao (props) {
-    const addAcomodacao = props.addAcomodacao || (() => {})
+export function CadastroQuarto (props) {
+    const addQuarto = props.addQuarto || (() => {})
     return (
         <FormProvider>
             <form className="std-cadastro dashboard-cadastro">
@@ -17,7 +17,7 @@ export function CadastroAcomodacao (props) {
                     Mobília: <Input type="text" value="" name="mobilia"/>
                 </label>
                 <Submit value="adicionar" submit={(inputs)=>{
-                    addAcomodacao(inputs)
+                    addQuarto(inputs)
                     props.activeModal.out(false)
                 }} />
             </form>
