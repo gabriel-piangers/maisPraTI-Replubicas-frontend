@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { useHookFormMask } from 'use-mask-input';
-import { zodResolver } from "@hookform/resolvers/zod";
-import { registerSchema } from "../schemas/register";
+import { Button } from "antd";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import { FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -10,17 +8,13 @@ import { MdLocalPhone } from "react-icons/md";
 import { FaIdCard } from "react-icons/fa6";
 import { RiLockPasswordFill } from "react-icons/ri";
 
-
-
 import "../styles/RegisterForm.css";
 
 
-function RegisterForm({ onSubmit }) {
+function RegisterForm({register, handleSubmit, errors,  onSubmit, isSubmitting }) {
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false);
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: zodResolver(registerSchema)
-    });
+    
     const registerWithMask = useHookFormMask(register);
 
 
@@ -28,19 +22,20 @@ function RegisterForm({ onSubmit }) {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <div className="form-field">
-          <label htmlFor="name">
+          <label htmlFor="nome">
             Nome Completo<span className="required-field">*</span>
           </label>
           <div className="input-group">
             <input
               type="text"
-              id="name"
+              id="nome"
               placeholder="Digite seu nome completo"
-              {...register("name")}
+              {...register("nome")}
+              disabled={isSubmitting}
             />
             <FaUser size={17} className="input-icon-left" />
           </div>
-          <small className="error-visible">{errors.name?.message || "⠀"}</small>
+          <small className="error-visible">{errors.nome?.message || "⠀"}</small>
         </div>
         <div className="form-field">
           <label htmlFor="email">
@@ -52,6 +47,7 @@ function RegisterForm({ onSubmit }) {
               id="email"
               placeholder="Digite seu email"
               {...register("email")}
+              disabled={isSubmitting}
             />
             <MdEmail className="input-icon-left" />
           </div>
@@ -60,20 +56,21 @@ function RegisterForm({ onSubmit }) {
           </small>
         </div>
         <div className="form-field">
-          <label htmlFor="phone">
+          <label htmlFor="telefone">
             Telefone<span className="required-field">*</span>
           </label>
           <div className="input-group">
             <input
               type="tel"
-              id="phone"
+              id="telefone"
               placeholder="(99) 99999-9999"
-              {...registerWithMask("phone", "(99) 99999-9999")}
+              {...registerWithMask("telefone", "(99) 99999-9999")}
+              disabled={isSubmitting}
             />
             <MdLocalPhone className="input-icon-left" />
           </div>
           <small className="error-visible">
-            {errors.phone?.message || "⠀"}
+            {errors.telefone?.message || "⠀"}
           </small>
         </div>
         <div className="form-field">
@@ -86,21 +83,23 @@ function RegisterForm({ onSubmit }) {
               id="cpf"
               placeholder="000.000.000-00"
               {...registerWithMask("cpf", "999.999.999-99")}
+              disabled={isSubmitting}
             />
             <FaIdCard size={19} className="input-icon-left" />
           </div>
           <small className="error-visible">{errors.cpf?.message || "⠀"}</small>
         </div>
         <div className="form-field">
-          <label htmlFor="password">
+          <label htmlFor="senha">
             Senha<span className="required-field">*</span>
           </label>
           <div className="input-group">
             <input
               type={showPassword ? "text" : "password"}
-              id="password"
+              id="senha"
               placeholder="Digite sua senha"
-              {...register("password")}
+              {...register("senha")}
+              disabled={isSubmitting}
             />
             <RiLockPasswordFill className="input-icon-left" />
             {showPassword ? (
@@ -122,19 +121,20 @@ function RegisterForm({ onSubmit }) {
             )}
           </div>
           <small className="error-visible">
-            {errors.password?.message || "⠀"}
+            {errors.senha?.message || "⠀"}
           </small>
         </div>
         <div className="form-field">
-          <label htmlFor="confirmation_password">
+          <label htmlFor="confirmation_senha">
             Confirmar Senha<span className="required-field">*</span>
           </label>
           <div className="input-group">
             <input
               type={showPasswordConfirmation ? "text" : "password"}
-              id="confirmation_password"
+              id="confirmation_senha"
               placeholder="Confirme sua senha"
-              {...register("confirmation_password")}
+              {...register("confirmation_senha")}
+              disabled={isSubmitting}
             />
             <RiLockPasswordFill className="input-icon-left" />
             {showPasswordConfirmation ? (
@@ -160,7 +160,7 @@ function RegisterForm({ onSubmit }) {
             )}
           </div>
           <small className="error-visible">
-            {errors.confirmation_password?.message || "⠀"}
+            {errors.confirmation_senha?.message || "⠀"}
           </small>
         </div>
       </div>
@@ -170,6 +170,7 @@ function RegisterForm({ onSubmit }) {
             type="checkbox"
             id="terms"
             {...register("terms", { required: true })}
+            disabled={isSubmitting}
           />
           Aceito os <span className="terms-link">termos e condições.</span>
           <span className="required-field">*</span>
@@ -177,9 +178,13 @@ function RegisterForm({ onSubmit }) {
       </div>
       <small className="error-visible">{errors.terms?.message}</small>
 
-      <button type="submit" className="btn-register">
+      <Button  
+        className="btn-register"
+        htmlType="submit"
+        loading={isSubmitting}
+      >
         Registrar
-      </button>
+      </Button>
     </form>
   );
 }

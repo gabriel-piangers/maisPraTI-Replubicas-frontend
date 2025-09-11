@@ -1,16 +1,18 @@
 @import url("index.css");
 
+
 .register-page {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    background-image: url("../assets//bg-register.png");
-    background-position: left;
-    background-size: 110%;
+    background-image: url("../assets/bg-register.png");
+    background-position: 28% top;
+    background-size: cover;
     background-repeat: no-repeat;
     padding-top: 3.125rem;
     min-height: 100vh;
+    width: 100%;
 }
 
 .register-header {
@@ -25,12 +27,13 @@
     background-color: var(--btn-color);
     border-radius: 1.5625rem 1.5625rem 0 0;
     color: #FFFFFF;
-    padding: 1.25rem 0;
+    padding: 5.5rem 0 1.25rem 0;
 }
 
 
 .register-header img {
     width: 3.125rem;
+    margin-bottom: 1rem;
 }
 
 
@@ -84,7 +87,7 @@
 
 .register-header .divider::before,
 .register-header .divider::after {
- content: "";
+  content: "";
   flex: 1;
   height: 0.0625rem;
   background: rgba(255,255,255,0.35);
@@ -140,8 +143,13 @@
     animation: gradientShift 15s ease-in-out infinite;
   }
 
+  .register-header .divider {
+    padding-inline: 0.875rem;
+  }
+
   .register-form {
     padding: 1.25rem 1.25rem 3.125rem 1.25rem;
     margin: 0;
   }
 }
+

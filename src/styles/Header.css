@@ -35,3 +35,29 @@
   font-weight: bold;
   cursor: default;
 }
+
+/* 🔹 Botões de autenticação */
+.auth-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.header-btn-login {
+  background-color: #e91e63;
+  border-color: #e91e63;
+}
+
+.header-btn-login:hover {
+  background-color: #c2185b !important;
+  border-color: #c2185b !important;
+}
+
+.header-btn-register {
+  border-color: #e91e63;
+  color: #e91e63;
+}
+
+.header-btn-register:hover {
+  background-color: #e91e63 !important;
+  color: #fff !important;
+}

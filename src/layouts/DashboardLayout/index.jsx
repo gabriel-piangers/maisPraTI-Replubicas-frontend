@@ -1,5 +1,7 @@
 import "../../styles/Dashboard.css";
 import { useEffect, useState } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useContext } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Layout, Typography, Avatar } from "antd";
 import { AiOutlineLogout } from "react-icons/ai";
@@ -11,6 +13,7 @@ const { Sider, Content } = Layout;
 const { Text } = Typography;
 
 export const DashboardLayout = () => {
+  const {logout} = useContext(AuthContext);
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -33,6 +36,7 @@ export const DashboardLayout = () => {
   const redirectToHome = () => navigate("/");
   const handleLogout = () => {
     navigate("/login");
+    logout();
   };
 
   return (
