@@ -2,58 +2,59 @@ import { Flex, Typography, Space, Avatar } from "antd";
 import { useContext, useEffect, useState } from "react"
 import { Checkbox, Select, Option, FormProvider } from "../Tools/FormProvider"
 import { FaCheck } from "react-icons/fa"
-import { Saldo } from "../Despesas/Saldo"
 import { getInitial } from "../../layouts/DashboardLayout";
 import { ModelContext } from "../Tools/ModelProvider";
-import { SaveButton } from "../CardItem/SaveButton";
-import { CloseEditButton } from "../CardItem/CloseEditButton";
-import { RemoveButton } from "../CardItem/RemoveButton";
-import { EditButton } from "../CardItem/EditButton";
-
+import { EditButtons } from "../CardButtons/EditButtons";
+import { EditButton } from "../CardButtons/EditButton";
+import { Balance } from "../Expenses/Balance";
 const { Text } = Typography
 
-export function Morador(props) {
+export function Resident(props) {
 
     const [editMode, setEditMode] = useState(false)
     const { editItem, removeItem } = props
 
     const model = useContext(ModelContext)
-    const [acomodacoes, setAcomodacoes] = useState([])
-    model.subscribe('acomodacoes', setAcomodacoes)
+    const [rooms, setRooms] = useState([])
+    model.subscribe('rooms', setRooms)
     useEffect(() => {
-        model.dispatch('acomodacoes.set')
+        model.dispatch('rooms.set')
     }, [])
-    const index = acomodacoes.findIndex(quarto => {
-        return quarto.moradores.includes(props.morador.nome)
+    const index = rooms.findIndex(room => {
+        return room.residents.includes(props.resident.name)
     })
-    function setQuarto(inputs) {
-        const quarto = inputs.has('quarto') ? inputs.get('quarto') : -1
-        const newAcomodacoes = Array.from(acomodacoes)
-        if ((quarto >= 0 && quarto < acomodacoes.length)
-            && !acomodacoes[quarto].moradores.includes(props.morador.nome)
-            && acomodacoes[quarto].moradores.length < acomodacoes[quarto].lugares) {
-            newAcomodacoes[quarto].moradores.push(props.morador.nome)
+    function setRoom(inputs) {
+        const room = inputs.has('room') ? inputs.get('room') : -1
+        const newRooms = Array.from(rooms)
+        if ((room >= 0 && room < rooms.length)
+            && !rooms[room].residents.includes(props.resident.name)
+            && rooms[room].residents.length < rooms[room].beds) {
+            newRooms[room].residents.push(props.resident.name)
             if (index >= 0) {
-              newAcomodacoes[index].moradores = newAcomodacoes[index].moradores.filter((morador) => morador !== props.morador.nome)
+                newRooms[index].residents = newRooms[index].residents.filter((resident) => resident !== props.resident.name)
             }
-            model.dispatch('acomodacoes.set', newAcomodacoes)
+            model.dispatch('rooms.set', newRooms)
         }
     }
-    function selectQuarto() {
+    function removeFromRoom () {
+         rooms[index].residents = rooms[index].residents.filter((resident) => resident !== props.resident.name)
+         model.dispatch('rooms.set', rooms)
+    }
+    function selectRoom() {
         return (
             <>
                 <Text type="secondary">Quarto </Text>
-                <Select value={index} name='quarto' >
-                    <Option value={-1} name='quarto' >
+                <Select value={index} name='room' >
+                    <Option value={-1} name='room' >
                         nenhum
                     </Option>
                     {
-                        acomodacoes.map((quarto, index) => {
-                            return (quarto.moradores.includes(props.morador.nome) && index + 1)
-                                || (quarto.moradores.length < quarto.lugares && index + 1) || 0
+                        rooms.map((room, index) => {
+                            return (room.residents.includes(props.resident.name) && index + 1)
+                                || (room.residents.length < room.beds && index + 1) || 0
                         })
                             .filter(index => index > 0)
-                            .map(index => <Option key={index} value={index - 1} name='quarto' >{index}</Option>)
+                            .map(index => <Option key={index} value={index - 1} name='room' >{index}</Option>)
                     }
                 </Select>
             </>
@@ -67,31 +68,31 @@ export function Morador(props) {
                 <>
                     <Flex gap={16} align="center" wrap>
                         <Avatar className="resident-avatar" size={48}>
-                            {getInitial(props.morador.nome)}
+                            {getInitial(props.resident.name)}
                         </Avatar>
                         <Flex vertical>
                             <Text strong className="resident-name">
-                                {props.morador.nome}
+                                {props.resident.name}
                             </Text>
                             <Space size="middle">
                                 {
                                     editMode
-                                        ? selectQuarto()
+                                        ? selectRoom()
                                         : <>
                                             <Text type="secondary">
                                                 Quarto {(index + 1) || 'nenhum'}
                                             </Text>
                                             <Text type="secondary">•</Text>
-                                            <Text type="secondary">{props.morador.telefone}</Text>
+                                            <Text type="secondary">{props.resident.telefone}</Text>
                                         </>
                                 }
                                 {
                                     editMode
                                         ? <>
                                             <Text type="secondary">Administrador: </Text>
-                                            <Checkbox name='administrador' checked={props.morador.administrador} />
+                                            <Checkbox name='administrator' checked={props.resident.administrator} />
                                         </>
-                                        : props.morador.administrador
+                                        : props.resident.administrator
                                         && (
                                             <>
                                                 <Text type="secondary">•</Text>
@@ -110,11 +111,11 @@ export function Morador(props) {
                             <Flex vertical align="end">
                                 <span>
                                     <Text strong className="resident-value">
-                                        Saldo: 
+                                        Saldo:
                                     </Text>
 
                                     <Text>
-                                        {' R$'} <Saldo nomeMorador={props.morador.nome} />
+                                        {' R$'} <Balance residentName={props.resident.name} />
                                     </Text>
                                 </span>
                             </Flex>
@@ -125,14 +126,15 @@ export function Morador(props) {
 
             {
                 editMode
-                    ? <Flex vertical gap={8}>
-                        <SaveButton editItem={(inputs) => {
-                            setQuarto(inputs)
+                    ? <EditButtons editItem={(inputs) => {
+                            setRoom(inputs)
                             editItem(inputs)
-                        }} setEditMode={setEditMode} />
-                        <RemoveButton removeItem={removeItem} setEditMode={setEditMode} />
-                        <CloseEditButton setEditMode={setEditMode} />
-                    </Flex>
+                        }}
+                        removeItem={() => {
+                            removeFromRoom()
+                            removeItem()
+                        }}
+                        setEditMode={setEditMode} />
                     : <EditButton setEditMode={setEditMode} />
             }
         </FormProvider>

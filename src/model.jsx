@@ -2,18 +2,15 @@ import { mock, morador } from "./assets/mock"
 import { Model, ModelProvider as Provider } from "./components/Tools/ModelProvider"
 
 const mainModel = new Model({
-  usuario: Model.default,
-  moradores: Model.newRedux(mock.moradores, {
-    set: (state, moradores) => moradores || Array.from(state)
+  user: Model.default,
+  residents: Model.newRedux(mock.residents, {
+    set: (state, residents) => residents || Array.from(state)
   }),
-  tarefas: Model.newRedux(mock.tarefas, {
-    set: (state, tarefas) => tarefas || Array.from(state)
+  expenses: Model.newRedux(mock.expenses, {
+    set: (state, expenses) => expenses || Array.from(state)
   }),
-  despesas: Model.newRedux(mock.despesas, {
-    set: (state, despesas) => despesas || Array.from(state)
-  }),
-  acomodacoes: Model.newRedux(mock.acomodacoes, {
-    set: (state, acomodacoes) => acomodacoes || Array.from(state)
+  rooms: Model.newRedux(mock.rooms, {
+    set: (state, rooms) => rooms || Array.from(state)
   })
 })
 

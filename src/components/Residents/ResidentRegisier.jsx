@@ -1,18 +1,18 @@
 import "../../styles/DashboardCadastro.css"
 import { FormProvider, Input, Submit } from "../Tools/FormProvider"
 
-export function CadastroMorador(props) {
-    const addMorador = props.addMorador || (() => {})
+export function ResidentRegisier(props) {
+    const addResident = props.addResident || (() => {})
     return (
         <FormProvider>
             <form className="std-cadastro dashboard-cadastro">
                 <h4>Adicione um morador</h4>
                 <label>
-                    Nome: <Input type="text" value="" name="nome"/>
+                    Nome: <Input type="text" value="" name="name"/>
                 </label>
                 <Submit value="adicionar" submit={(inputs)=>{
-                    inputs.setup('administrador', [true])
-                    addMorador(inputs)
+                    inputs.setup('administrator', [true])
+                    addResident(inputs)
                     props.activeModal.out(false)
                 }} />
             </form>

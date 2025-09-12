@@ -1,83 +1,69 @@
 export const morador = 'Renato'
 
 export  const mock = {
-    despesas: [
+    expenses: [
       {
-        tipo: 'Aluguel',
-        vencimento: 10,
+        type: 'Aluguel',
+        dueDate: 10,
         total: 2100,
-        pagamentos: [
+        payments: [
           ['Claudio', 700]
         ]
       },
       {
-        tipo: 'Condominio',
-        vencimento: 10,
+        type: 'Condominio',
+        dueDate: 10,
         total: 500,
-        pagamentos: []
+        payments: []
       },
       {
-        tipo: 'Energia',
-        vencimento: 8,
+        type: 'Energia',
+        dueDate: 8,
         total: 210.47,
-        pagamentos: [
+        payments: [
           ['Carlos', 210.47]
         ]
       },
       {
-        tipo: 'Mantimentos',
-        vencimento: 4,
+        type: 'Mantimentos',
+        dueDate: 4,
         total: 420,
-        pagamentos: [
+        payments: [
           ['Renato', 420]
         ], 
       }
     ],
-    moradores: [
+    residents: [
       {
-        nome: 'Carlos',
-        administrador: false
+        name: 'Carlos',
+        administrator: false
       },
       {
-        nome: 'Renato',
-        administrador: true
+        name: 'Renato',
+        administrator: true
       },
       {
-        nome: 'Claudio',
-        administrador: true
+        name: 'Claudio',
+        administrator: true
       }
     ],
-    tarefas: [
+    rooms: [
       {
-        tarefa: 'Levar o lixo para fora',
-        responsaveis: ['Renato']
-      },
-      {
-        tarefa: 'Faxina na casa',
-        responsaveis: ['Claudio','Renato']
-      },
-      {
-        tarefa: 'Lavar o banheiro',
-        responsaveis: ['Carlos']
-      }
-    ],
-    acomodacoes: [
-      {
-        moradores: [],
-        mobilia: 'não',
-        lugares: 2,
+        residents: [],
+        furniture: 'não',
+        beds: 2,
         suite: 'não'
       },
       {
-        moradores: ['Claudio','Renato'],
-        mobilia: 'completo',
-        lugares: 2,
+        residents: ['Claudio','Renato'],
+        furniture: 'completo',
+        beds: 2,
         suite: 'sim'
       },
       {
-        moradores: ['Carlos'],
-        mobilia: 'armário sem cama',
-        lugares: 2,
+        residents: ['Carlos'],
+        furniture: 'armário sem cama',
+        beds: 2,
         suite: 'não'
       }
     ]

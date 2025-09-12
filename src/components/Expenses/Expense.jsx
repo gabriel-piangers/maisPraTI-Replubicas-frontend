@@ -1,35 +1,33 @@
 import { Flex, Typography, Space } from "antd";
 import { useState } from "react"
 import { Input, FormProvider } from "../Tools/FormProvider"
-import { SaveButton } from "../CardItem/SaveButton";
-import { CloseEditButton } from "../CardItem/CloseEditButton";
-import { RemoveButton } from "../CardItem/RemoveButton";
-import { EditButton } from "../CardItem/EditButton";
-import { decimal } from "./Saldo";
+import { EditButtons } from "../CardButtons/EditButtons";
+import { EditButton } from "../CardButtons/EditButton";
+import { decimalString } from "./Balance";
 
 const { Text } = Typography
 
-export function Despesa(props) {
+export function Expense(props) {
 
     const [editMode, setEditMode] = useState(false)
     const { editItem, removeItem } = props
-    const despesa = props.despesa
+    const expense = props.expense
 
-    function getCotas() {
-        return props.moradores.map((nome) => {
-            const cota = (despesa.pagamentos.find(([morador]) => morador === nome) || [undefined, 0])[1]
+    function getQuotas() {
+        return props.residents.map(name => {
+            const quota = (expense.payments.find(([resident]) => resident === name) || [undefined, 0])[1]
             return editMode
-                ? <span key={nome}>
+                ? <span key={name}>
                     <Text type="secondary">
-                        {nome}:
+                        {name}:
                     </Text>
-                    {' R$'} <Input value={decimal(cota)} name={'pagamento' + nome} />
+                    {' R$'} <Input value={decimalString(quota)} name={'payment' + name} />
                 </span>
-                : <span key={nome}>
+                : <span key={name}>
                     <Text type="secondary">
-                        {nome}:
+                        {name}:
                     </Text>
-                    {' R$ ' + decimal(cota)}
+                    {' R$ ' + decimalString(quota)}
                 </span>
         })
     }
@@ -41,7 +39,7 @@ export function Despesa(props) {
                     <Flex gap={16} align="center" wrap>
                         <Flex vertical>
                             <Text strong className="resident-name">
-                                {despesa.tipo}
+                                {expense.type}
                             </Text>
                             {
                                 editMode
@@ -50,26 +48,26 @@ export function Despesa(props) {
                                             <Text type="secondary">
                                                 Vencimento:
                                             </Text>
-                                            <Input value={despesa.vencimento} name='vencimento' />
+                                            <Input value={expense.dueDate} name='dueDate' />
                                         </Flex>
                                         <Flex gap={8}>
                                             <Text type="secondary">
                                                 Valor:
                                             </Text>
-                                            {'R$ '}<Input value={decimal(despesa.total)} name='total' />
+                                            {'R$ '}<Input value={decimalString(expense.total)} name='total' />
                                         </Flex>
                                     </>
                                     : <Space size="middle">
                                         <Text type="secondary">
                                             Vencimento:
                                         </Text>
-                                        {despesa.vencimento}
+                                        {expense.dueDate}
 
                                         <Text type="secondary">•</Text>
                                         <Text type="secondary">
                                             Valor:
                                         </Text>
-                                        { 'R$ '}{decimal(despesa.total)}
+                                        { 'R$ '}{decimalString(expense.total)}
                                     </Space>
                             }
                         </Flex>
@@ -79,7 +77,7 @@ export function Despesa(props) {
                         <Flex gap={32}>
                             <Text >Pagamentos: </Text>
                             <Flex vertical gap={8}>
-                                {getCotas()}
+                                {getQuotas()}
                             </Flex>
                         </Flex>
                     }
@@ -87,11 +85,9 @@ export function Despesa(props) {
             </div>
             {
                 editMode
-                    ? <Flex vertical gap={8}>
-                        <SaveButton editItem={editItem} setEditMode={setEditMode} />
-                        <RemoveButton removeItem={removeItem} setEditMode={setEditMode} />
-                        <CloseEditButton setEditMode={setEditMode} />
-                    </Flex>
+                    ? <EditButtons editItem={editItem}
+                    setEditMode={setEditMode}
+                     removeItem={removeItem} />
                     : <EditButton setEditMode={setEditMode} />
             }
         </FormProvider>

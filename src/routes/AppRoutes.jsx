@@ -3,9 +3,9 @@ import { HomePage } from "../pages/HomePage";
 
 import { AuthLayout } from "../layouts/AuthLayout";
 import { DashboardLayout } from "../layouts/DashboardLayout";
-import { ListaMoradores as ResidentsPage } from "../components/Moradores/ListaMoradores";
-import { Despesas as ExpensesPage } from "../components/Despesas/Despesas";
-import { Quartos as RoomsPage } from "../components/Quartos/Quartos";
+import { Residents as ResidentsPage } from "../components/Residents";
+import { Expenses as ExpensesPage } from "../components/Expenses";
+import { Rooms as RoomsPage } from "../components/Rooms";
 
 export const AppRoutes = () => {
   return (

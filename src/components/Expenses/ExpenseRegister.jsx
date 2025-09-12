@@ -1,23 +1,23 @@
 import "../../styles/DashboardCadastro.css"
 import { FormProvider, Input, Submit } from "../Tools/FormProvider"
 
-export function CadastroQuarto (props) {
-    const addQuarto = props.addQuarto || (() => {})
+export function ExpenseRegister(props) {
+    const addExpense = props.addExpense || (()=> {})
     return (
         <FormProvider>
             <form className="std-cadastro dashboard-cadastro">
-                <h4>Adicine um novo quarto</h4>
+                <h4>Descreva sua despesa</h4>
                 <label>
-                    Lugares: <Input type="text" value="" name="lugares" />
+                    Tipo: <Input type="text" value="" name="type" />
                 </label>
                 <label>
-                    Suite: <Input type="text" value="" name="suite" />
+                    Data do vencimento: <Input type="text" value="" name="dueDate" />
                 </label>
                 <label>
-                    Mobília: <Input type="text" value="" name="mobilia"/>
+                    Total: <Input type="text" value="" name="total"/>
                 </label>
                 <Submit value="adicionar" submit={(inputs)=>{
-                    addQuarto(inputs)
+                    addExpense(inputs)
                     props.activeModal.out(false)
                 }} />
             </form>
