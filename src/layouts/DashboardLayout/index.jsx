@@ -10,6 +10,10 @@ import { SidebarMenu } from "../../components/SidebarMenu";
 const { Sider, Content } = Layout;
 const { Text } = Typography;
 
+export function getInitial (userName) {
+  return (userName?.trim()?.charAt(0) || "U").toUpperCase();
+}
+
 export const DashboardLayout = () => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
@@ -17,7 +21,7 @@ export const DashboardLayout = () => {
 
   const userName = "Rafael Santos";
   const userRole = "Administrador";
-  const userInitial = (userName?.trim()?.charAt(0) || "U").toUpperCase();
+  const userInitial = getInitial(userName)
 
   useEffect(() => {
     const handleResize = () => {
