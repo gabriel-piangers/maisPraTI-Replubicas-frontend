@@ -2,7 +2,7 @@
   background-color: #fff;
   padding: 0 24px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   height: 64px;
   position: sticky;
@@ -33,5 +33,10 @@
   background-color: #e91e63;
   color: #fff;
   font-weight: bold;
-  cursor: default;
+  cursor: pointer;
+}
+
+.header-logo {
+  height: 40px;
+  cursor: pointer;
 }
