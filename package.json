@@ -10,12 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "antd": "^5.27.3",
-=======
     "@hookform/resolvers": "^5.2.1",
     "antd": "^5.27.1",
->>>>>>> f13fdbe3ea751f86379cc6f5d22574ded3955516
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-hook-form": "^7.62.0",
