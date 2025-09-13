@@ -1,4 +1,4 @@
-export const morador = 'Renato'
+export const user = 'Renato'
 
 export  const mock = {
     expenses: [

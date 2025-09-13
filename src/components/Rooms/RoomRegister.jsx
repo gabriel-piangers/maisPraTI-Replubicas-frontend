@@ -1,11 +1,11 @@
-import "../../styles/DashboardCadastro.css"
+import "../../styles/DashboardRegister.css"
 import { FormProvider, Input, Submit } from "../Tools/FormProvider"
 
 export function RoomRegister (props) {
     const addRoom = props.addRoom || (() => {})
     return (
         <FormProvider>
-            <form className="std-cadastro dashboard-cadastro">
+            <form className="std-register dashboard-register">
                 <h4>Adicine um novo quarto</h4>
                 <label>
                     Lugares: <Input type="text" value="" name="beds" />

@@ -9,14 +9,8 @@ export function decimalNumber(str) {
 }
 export function Balance (props) {
     const model = useContext(ModelContext)
-    const [residents, setResidents] = useState([])
-    const [expenses, setExpenses] = useState([])
-    model.subscribe('residents', setResidents)
-    model.subscribe('expenses', setExpenses)
-    useEffect(()=> {
-        model.dispatch('residents.set')
-        model.dispatch('expenses.set')
-    }, [])
+    const [residents] = model.residentsHook()
+    const [expenses] = model.expensesHook(residents)
     const balance = expenses.reduce((total, expense) => {
         return total
             + (expense.payments.find(item => item[0] === props.residentName) || ['', 0])[1]

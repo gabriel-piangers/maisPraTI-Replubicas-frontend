@@ -2,10 +2,9 @@ import "../../styles/ResidentsPage.css";
 import { Card, Typography, Flex } from "antd";
 import { ExpenseRegister } from "./ExpenseRegister"
 import { AddItem } from "../CardButtons/AddItem"
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { ModelContext } from "../Tools/ModelProvider";
 import { Expense } from "./Expense";
-import { decimalNumber } from "./Balance";
 
 const { Title } = Typography
 
@@ -19,45 +18,19 @@ function getResidentsList (residents) {
 
 export function Expenses (props) {
     const model = useContext(ModelContext)
-    const [expenses, setExpenses] = useState([])
-    const [residents, setResidents] = useState([])
-    model.subscribe('expenses', setExpenses)
-    model.subscribe('residents', setResidents)
-    useEffect(()=> {
-        model.dispatch('expenses.set')
-        model.dispatch('residents.set')
-    }, [])
-    function setExpense(index, inputs) {
-        const newExpenses = Array.from(expenses)
-        const expense = newExpenses[index] || {}
-        newExpenses[index] = {
-            type: inputs.has('type') ? inputs.get('type') : expense.type,
-            dueDate: inputs.has('dueDate') ? Number(inputs.get('dueDate')) : expense.dueDate,
-            total: inputs.has('total') ? decimalNumber(inputs.get('total')) : expense.total,
-            payments: expense.payments || []
-        }
-        for (let {name: resident} of residents) {
-            const payment = newExpenses[index].payments.find(payment => payment[0] === resident)
-            if (payment) {
-                payment[1] = decimalNumber(inputs.get('payment' + resident))
-            } else {
-                newExpenses[index].payments.push([resident, decimalNumber(inputs.get('payment' + resident))])
-            }
-        }
-        model.dispatch('expenses.set', newExpenses)
-    }
+    const [residents] = model.residentsHook()
+    const [expenses, expensesModel] = model.expensesHook(residents)
     function addExpense(inputs) {
-        setExpense(expenses.length, inputs)
+        expensesModel.add(inputs)
     }
     function createRemove(index) {
         return function removeExpense() {
-            expenses.splice(index, 1)
-            model.dispatch('expenses.set', Array.from(expenses))
+            expensesModel.remove(index)
         }
     }
     function createEdit(index) {
         return function editExpense(inputs) {
-            setExpense(index, inputs)
+            expensesModel.update(index, inputs)
         }
     }
     const activeModal = { out: () => { } }

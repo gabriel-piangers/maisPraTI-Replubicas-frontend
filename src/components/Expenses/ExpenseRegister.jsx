@@ -1,11 +1,11 @@
-import "../../styles/DashboardCadastro.css"
+import "../../styles/DashboardRegister.css"
 import { FormProvider, Input, Submit } from "../Tools/FormProvider"
 
 export function ExpenseRegister(props) {
     const addExpense = props.addExpense || (()=> {})
     return (
         <FormProvider>
-            <form className="std-cadastro dashboard-cadastro">
+            <form className="std-register dashboard-register">
                 <h4>Descreva sua despesa</h4>
                 <label>
                     Tipo: <Input type="text" value="" name="type" />

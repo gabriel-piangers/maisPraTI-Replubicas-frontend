@@ -10,31 +10,18 @@ const { Title } = Typography
 
 export function Residents(props) {
     const model = useContext(ModelContext)
-    const [residents, setResidents] = useState([])
-    model.subscribe('residents', setResidents)
-    useEffect(() => {
-        model.dispatch('residents.set')
-    }, [])
-    function setResident(index, inputs) {
-        const newResidents = Array.from(residents)
-        newResidents[index] = {
-            name: inputs.has('name') ? inputs.get('name') : residents[index].name,
-            administrator: inputs.has('administrator') ? inputs.get('administrator') : residents[index].administrator,
-        }
-        model.dispatch('residents.set', newResidents)
-    }
+    const [residents, residentsModel] = model.residentsHook()
     function addResident(inputs) {
-        setResident(residents.length, inputs)
+        residentsModel.add(inputs)
     }
     function createRemove(index) {
         return function removeResident() {
-            residents.splice(index, 1)
-            model.dispatch('residents.set', Array.from(residents))
+            residentsModel.remove(index)
         }
     }
     function createEdit(index) {
         return function editMorador(inputs) {
-            setResident(index, inputs)
+            residentsModel.update(index, inputs)
         }
     }
     const activeModal = { out: () => { } }

@@ -15,31 +15,18 @@ export function Resident(props) {
     const { editItem, removeItem } = props
 
     const model = useContext(ModelContext)
-    const [rooms, setRooms] = useState([])
-    model.subscribe('rooms', setRooms)
-    useEffect(() => {
-        model.dispatch('rooms.set')
-    }, [])
+    const [rooms, roomsModel] = model.roomHook(props.resident.name)
+    function removeFromRoom () {
+        const removedIndex = rooms[index].residents.indexOf(props.resident.name)
+        rooms[index].residents.splice(removedIndex, 1)
+        roomsModel.set(rooms)
+    }
+    function setRoom (inputs) {
+        roomsModel.update(index, inputs)
+    }
     const index = rooms.findIndex(room => {
         return room.residents.includes(props.resident.name)
     })
-    function setRoom(inputs) {
-        const room = inputs.has('room') ? inputs.get('room') : -1
-        const newRooms = Array.from(rooms)
-        if ((room >= 0 && room < rooms.length)
-            && !rooms[room].residents.includes(props.resident.name)
-            && rooms[room].residents.length < rooms[room].beds) {
-            newRooms[room].residents.push(props.resident.name)
-            if (index >= 0) {
-                newRooms[index].residents = newRooms[index].residents.filter((resident) => resident !== props.resident.name)
-            }
-            model.dispatch('rooms.set', newRooms)
-        }
-    }
-    function removeFromRoom () {
-         rooms[index].residents = rooms[index].residents.filter((resident) => resident !== props.resident.name)
-         model.dispatch('rooms.set', rooms)
-    }
     function selectRoom() {
         return (
             <>

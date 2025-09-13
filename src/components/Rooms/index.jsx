@@ -10,34 +10,18 @@ const { Title } = Typography
 
 export function Rooms(props) {
     const model = useContext(ModelContext)
-    const [rooms, setRooms] = useState([])
-    model.subscribe('rooms', setRooms)
-    useEffect(() => {
-        model.dispatch('rooms.set')
-    }, [])
-    function setRoom (index, inputs) {
-        const newRooms = Array.from(rooms)
-        const room = rooms[index]
-        newRooms[index] = {
-            beds: inputs.has('beds') ? Number(inputs.get('beds')) : room.beds,
-            suite: inputs.has('suite') ? inputs.get('suite') : room.suite,
-            furniture: inputs.has('furniture') ? inputs.get('furniture') : room.furniture,
-            residents: room?.residents ?? []
-        }
-        model.dispatch('rooms.set', newRooms)
-    }
+    const [rooms, roomsModel] = model.roomsHook()
     function addRoom(inputs) {
-        setRoom(rooms.length, inputs)
+        roomsModel.add(inputs)
     }
     function createRemove(index) {
         return function removeRoom() {
-            rooms.splice(index, 1)
-            model.dispatch('rooms.set', Array.from(rooms))
+            roomsModel.remove(index)
         }
     }
     function createEdit(index) {
         return function editRoom(inputs) {
-            setRoom(index, inputs)
+            roomsModel.update(index, inputs)
         }
     }
     const activeModal = { out: () => { } }
