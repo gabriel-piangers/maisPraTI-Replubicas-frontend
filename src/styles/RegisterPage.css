@@ -58,21 +58,21 @@
 }
 
 .register-header .login-link {
-    color: #FFFFFF;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    padding: 0.625rem;
-    border-radius: 0.3125rem;
-    transition: all 0.3s ease;
-    display: inline-block;
-    background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.625rem;
+  border-radius: 0.3125rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .register-header .login-link:hover {
-    background: #FFFFFF;
-    color: #EB4D5B;
-    transform: scale(1.05);
+  background: #ffffff;
+  color: #eb4d5b;
+  transform: scale(1.05);
 }
 
 .register-header .divider {
@@ -88,41 +88,42 @@
 .register-header .divider::before,
 .register-header .divider::after {
   content: "";
+  content: "";
   flex: 1;
   height: 0.0625rem;
-  background: rgba(255,255,255,0.35);
+  background: rgba(255, 255, 255, 0.35);
   margin: 0 0.75rem;
   display: block;
 }
 
 .register-form {
-    max-width: 34.375rem;
-    width: 100%;
-    background-color: #F8F7FC;
-    border-radius: 0 0 1.5625rem 1.5625rem;
-    padding: 2.1875rem 3.75rem;
-    margin-bottom: 2.5rem;
-    box-shadow: rgba(0, 0, 0, 0.16) 0rem 0.0625rem 0.25rem;
+  max-width: 34.375rem;
+  width: 100%;
+  background-color: #f8f7fc;
+  border-radius: 0 0 1.5625rem 1.5625rem;
+  padding: 2.1875rem 3.75rem;
+  margin-bottom: 2.5rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0rem 0.0625rem 0.25rem;
 }
 
 .register-form h3 {
-    position: relative;
-    font-size: 1.125rem;
-    margin-bottom: 1.25rem;
+  position: relative;
+  font-size: 1.125rem;
+  margin-bottom: 1.25rem;
 }
 
 .register-form h3::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 0.0938rem;
-    background-color: var(--btn-color);
-    margin-top: 0.25rem;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 0.0938rem;
+  background-color: var(--btn-color);
+  margin-top: 0.25rem;
 }
 
 @media (max-width: 834px) {
-  .register-page{
-    min-height: 100vh;
+  .register-page {
+    min-height: calc(100vh - 64px);
     background-size: cover;
     background-position: center;
   }
@@ -130,13 +131,14 @@
 
 @media (max-width: 480px) {
   .register-page {
-      min-height: 100vh;
-      padding: 2.5rem 0;
-      background: linear-gradient(135deg, 
-      #e97a83 0%, 
-      #f39c9c 25%, 
-      #e97a83 50%, 
-      #d66d76 75%, 
+    min-height: calc(100vh - 64px);
+    padding: 2.5rem 0;
+    background: linear-gradient(
+      135deg,
+      #e97a83 0%,
+      #f39c9c 25%,
+      #e97a83 50%,
+      #d66d76 75%,
       #e97a83 100%
     );
     background-size: 400% 400%;
