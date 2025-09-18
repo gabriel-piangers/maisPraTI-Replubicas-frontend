@@ -3,19 +3,29 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { Avatar, Layout, Button } from "antd";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const { Header: AntdHeader } = Layout;
 
 export const Header = () => {
   const { isAuthenticated } = useContext(AuthContext);
+  const location = useLocation();
   const userInitial = "R"; 
+
+  const isHome = location.pathname === "/";
 
   return (
     <AntdHeader className="header">
       <div className="headerRight">
         {isAuthenticated ? (
           <>
+            {isHome && (
+              <Link to="/dashboard">
+                <Button type="primary" className="header-btn-dashboard">
+                  Dashboard
+                </Button>
+              </Link>
+            )}
             <IoIosNotificationsOutline className="icon" />
             <Avatar className="avatar">{userInitial}</Avatar>
           </>

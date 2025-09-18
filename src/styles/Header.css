@@ -61,3 +61,15 @@
   background-color: #e91e63 !important;
   color: #fff !important;
 }
+
+.header-btn-dashboard {
+  background-color: #e91e63;
+  border-color: #e91e63;
+  color: #fff;
+}
+
+.header-btn-dashboard:hover {
+  background-color: #c2185b !important;
+  border-color: #c2185b !important;
+}
+
