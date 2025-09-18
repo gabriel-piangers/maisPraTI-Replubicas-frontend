@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
     toast.success("Você foi desconectado.");
   };
 
-  const singup = async (nome, email, cpf, telefone, senha) => {
+  const signup = async (nome, email, cpf, telefone, senha) => {
     try {
       const response = await Api.post("/usuarios/cadastrar", {
         nome,
@@ -79,7 +79,7 @@ const AuthProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, isLoading, login, logout, singup, token }}>
+    <AuthContext.Provider value={{ isAuthenticated, isLoading, login, logout, signup, token }}>
       {children}
     </AuthContext.Provider>
   );

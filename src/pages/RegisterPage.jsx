@@ -11,7 +11,7 @@ import { useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 
 export default function RegisterPage() {
-  const {singup} = useContext(AuthContext);
+  const {signup} = useContext(AuthContext);
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm({
         resolver: zodResolver(registerSchema)
     });
@@ -20,7 +20,7 @@ export default function RegisterPage() {
     const onSubmit = async (data) => {
 
         try {
-          const res = await singup(data.nome, data.email, data.cpf, data.telefone, data.senha);
+          const res = await signup(data.nome, data.email, data.cpf, data.telefone, data.senha);
           if (res) {
             reset();
             window.scrollTo({ top: 0, behavior: 'smooth' });
