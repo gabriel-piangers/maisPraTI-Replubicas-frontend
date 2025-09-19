@@ -2,7 +2,7 @@
   background-color: #fff;
   padding: 0 24px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   height: 64px;
   position: sticky;
@@ -33,10 +33,43 @@
   background-color: #e91e63;
   color: #fff;
   font-weight: bold;
-  cursor: pointer;
+  cursor: default;
 }
 
-.header-logo {
-  height: 40px;
-  cursor: pointer;
+/* 🔹 Botões de autenticação */
+.auth-buttons {
+  display: flex;
+  gap: 12px;
 }
+
+.header-btn-login {
+  background-color: #e91e63;
+  border-color: #e91e63;
+}
+
+.header-btn-login:hover {
+  background-color: #c2185b !important;
+  border-color: #c2185b !important;
+}
+
+.header-btn-register {
+  border-color: #e91e63;
+  color: #e91e63;
+}
+
+.header-btn-register:hover {
+  background-color: #e91e63 !important;
+  color: #fff !important;
+}
+
+.header-btn-dashboard {
+  background-color: #e91e63;
+  border-color: #e91e63;
+  color: #fff;
+}
+
+.header-btn-dashboard:hover {
+  background-color: #c2185b !important;
+  border-color: #c2185b !important;
+}
+

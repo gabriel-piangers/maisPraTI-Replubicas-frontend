@@ -1,33 +1,60 @@
 @import url("index.css");
 
+
 .register-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-image: url("../assets//bg-register.png");
-  background-position: left;
-  background-size: 110%;
-  background-repeat: no-repeat;
-  padding-top: 3.125rem;
-  min-height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-image: url("../assets/bg-register.png");
+    background-position: 28% top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 3.125rem;
+    min-height: 100vh;
+    width: 100%;
 }
 
 .register-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.625rem;
-  max-width: 34.375rem;
-  width: 100%;
-  background-color: var(--btn-color);
-  border-radius: 1.5625rem 1.5625rem 0 0;
-  color: #ffffff;
-  padding: 1.25rem 0;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    max-width: 34.375rem;
+    width: 100%;
+    background-color: var(--btn-color);
+    border-radius: 1.5625rem 1.5625rem 0 0;
+    color: #FFFFFF;
+    padding: 5.5rem 0 1.25rem 0;
 }
+
+
 .register-header img {
-  width: 3.125rem;
+    width: 3.125rem;
+    margin-bottom: 1rem;
+}
+
+
+.btn-return {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: absolute;
+  padding: 6px 10px;
+  border-radius: 16px;
+  color: #FFFFFF;
+  top: 1.25rem;
+  left: 1.2rem;
+  background-color: #e97a83;
+  transition: all .3s ease-in-out;
+}
+
+.btn-return:hover {
+  background: #FFFFFF;
+  color: #EB4D5B;
+  transform: scale(1.05);
 }
 
 .register-header .login-link {
@@ -60,6 +87,7 @@
 
 .register-header .divider::before,
 .register-header .divider::after {
+  content: "";
   content: "";
   flex: 1;
   height: 0.0625rem;
@@ -117,8 +145,13 @@
     animation: gradientShift 15s ease-in-out infinite;
   }
 
+  .register-header .divider {
+    padding-inline: 0.875rem;
+  }
+
   .register-form {
     padding: 1.25rem 1.25rem 3.125rem 1.25rem;
     margin: 0;
   }
 }
+
