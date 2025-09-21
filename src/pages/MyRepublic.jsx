@@ -36,77 +36,103 @@ export function MyRepublic() {
 
   if (editing) {
     return (
-      <section className="republic-section">
-        <form className="republic-form" onSubmit={handleFormSubmit}>
-          <input
-            type="text"
-            name="title"
-            className="republic-form-title"
-            placeholder="Titulo da republica"
-            defaultValue={republica.title}
-          />
-
-          <div className="republic-img-container">
-            <img
-              src={imageUrl}
-              alt="Imagem da República"
-              className="republic-img"
-            />
-            <input
-              type="file"
-              name="imageUrl"
-              accept="image/*"
-              onChange={handleUpdateImage}
-            />
-          </div>
-
-          <input
-            type="text"
-            name="address"
-            className="republic-form-address"
-            placeholder="Endereço"
-            defaultValue={republica.address}
-          />
-          <textarea
-            name="description"
-            className="republic-form-description"
-            placeholder="Descrição"
-            defaultValue={republica.description}
-          ></textarea>
+      <>
+        <div className="republic-header">
+          <h1 className="republic-title">Minha Republica</h1>
           <div className="republic-form-buttons">
             <input
               type="submit"
-              className="republic-form-submit"
+              className="republic-form-submit republic-header-button"
               value="Salvar"
             />
             <LightButton
-              className="btn-cancel-edit"
+              className="btn-cancel-edit republic-header-button"
               label="Cancelar"
               onClick={() => setEditing(false)}
             />
           </div>
-        </form>
-      </section>
+        </div>
+        <section className="republic-section">
+          <form className="republic-form" onSubmit={handleFormSubmit}>
+            <input
+              type="text"
+              name="title"
+              className="republic-form-title"
+              placeholder="Titulo da republica"
+              defaultValue={republica.title}
+            />
+
+            <div className="republic-img-container">
+              <img
+                src={imageUrl}
+                alt="Imagem da República"
+                className="republic-img"
+              />
+              <input
+                type="file"
+                name="imageUrl"
+                accept="image/*"
+                onChange={handleUpdateImage}
+              />
+            </div>
+
+            <input
+              type="text"
+              name="address"
+              className="republic-form-address"
+              placeholder="Endereço"
+              defaultValue={republica.address}
+            />
+            <textarea
+              name="description"
+              className="republic-form-description"
+              placeholder="Descrição"
+              defaultValue={republica.description}
+            ></textarea>
+            <div className="republic-form-buttons">
+              <input
+                type="submit"
+                className="republic-form-submit"
+                value="Salvar"
+              />
+              <LightButton
+                className="btn-cancel-edit"
+                label="Cancelar"
+                onClick={() => setEditing(false)}
+              />
+            </div>
+          </form>
+        </section>
+      </>
     );
   } else {
     return (
-      <section className="republic-section">
-        <h2 className="republic-title">{republica.title}</h2>
-        <div className="republic-img-container">
-          <img
-            src={republica.imageUrl}
-            alt="Imagem da República"
-            className="republic-img"
+      <>
+        <div className="republic-header">
+          <h1 className="republic-title">Minha Republica</h1>
+          <Button
+            className="republic-header-button"
+            label="Editar"
+            onClick={() => setEditing(true)}
           />
         </div>
-        <p className="republic-address">{republica.address}</p>
-        <p className="republic-description">{republica.description}</p>
-        <ul className="republic-details">
-          <li>{republica.members} Moradores</li>
-          <li>{republica.available_rooms} Quartos Disponíveis</li>
-        </ul>
-        <Button label="Editar" onClick={() => setEditing(true)} />
-      </section>
+        <section className="republic-section">
+          <h2 className="republic-title">{republica.title}</h2>
+          <div className="republic-img-container">
+            <img
+              src={republica.imageUrl}
+              alt="Imagem da República"
+              className="republic-img"
+            />
+          </div>
+          <p className="republic-address">{republica.address}</p>
+          <p className="republic-description">{republica.description}</p>
+          <ul className="republic-details">
+            <li>{republica.members} Moradores</li>
+            <li>{republica.available_rooms} Quartos Disponíveis</li>
+          </ul>
+        </section>
+      </>
     );
   }
 }
