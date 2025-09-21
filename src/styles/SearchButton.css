@@ -1,0 +1,13 @@
+@import url("./index.css");
+
+.search-button {
+  background-color: #ff5a5f;
+  border: none;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 1.1rem;
+}

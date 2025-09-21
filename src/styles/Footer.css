@@ -1,0 +1,80 @@
+@import url("./index.css");
+
+.std-footer {
+  width: 100%;
+  background-color: rgb(21, 21, 44);
+  color: white;
+  padding: 1rem 5%;
+  font-size: 0.9rem;
+}
+
+.footer-links-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-links{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 20%;
+    gap: 0.5rem;
+}
+
+.footer-links-left {
+    width: 30%;
+}
+
+.footer-link-header {
+    margin-bottom: 0.5rem;
+}
+
+.footer-logo{
+    height: 3rem;
+    width: 3rem;
+    object-fit: contain;
+}
+
+.footer-ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-li {
+    cursor: pointer;
+}
+
+.footer-line {
+    height: 2px;
+    background-color: white;
+    margin: 1.5rem 8%;
+}
+
+.footer-socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.footer-social-icon{
+    height: 2.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.footer-social-icon:hover {
+    scale: 110%;
+}
+
+.footer-copyright{
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
