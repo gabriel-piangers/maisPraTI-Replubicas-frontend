@@ -79,15 +79,7 @@ const modelControler = Object.freeze({
         type: inputs.hasOwnProperty('type') ? inputs.type : expense.type,
         dueDate: inputs.hasOwnProperty('dueDate') ? Number(inputs.dueDate) : expense.dueDate,
         total: inputs.hasOwnProperty('total') ? decimalNumber(inputs.total) : expense.total,
-        payments: expense.payments || []
-      }
-      for (let { name } of residents) {
-        const payment = newExpenses[index].payments.find(payment => payment[0] === name)
-        if (payment) {
-          payment[1] = decimalNumber(inputs['payment' + name] || '')
-        } else {
-          newExpenses[index].payments.push([name, decimalNumber(inputs['payment' + name] || '')])
-        }
+        payments: inputs.hasOwnProperty('payments') ? inputs.payments : expense.payments
       }
       return newExpenses
     })

@@ -1,6 +1,5 @@
 import { Flex, Typography, Space, Avatar } from "antd";
-import { useContext, useEffect, useState } from "react"
-import { Checkbox, Select, Option, FormProvider } from "../Tools/FormProvider"
+import { useContext, useMemo, useState } from "react"
 import { FaCheck } from "react-icons/fa"
 import { getInitial } from "../../layouts/DashboardLayout";
 import { ModelContext } from "../Tools/ModelProvider";
@@ -13,6 +12,7 @@ export function Resident(props) {
 
     const [editMode, setEditMode] = useState(false)
     const { editItem, removeItem } = props
+    const [administrator, setAdministrator] = useState(props.administrator)
 
     const model = useContext(ModelContext)
     const [rooms, roomsModel] = model.roomHook(props.resident.name)
@@ -24,32 +24,38 @@ export function Resident(props) {
     function setRoom (inputs) {
         roomsModel.update(index, inputs)
     }
+    
     const index = rooms.findIndex(room => {
         return room.residents.includes(props.resident.name)
     })
+
+    const [roomIndex, setRoomIndex] = useState(-1)
+
+    useMemo(() => setRoomIndex(index), [rooms])
+
     function selectRoom() {
         return (
             <>
                 <Text type="secondary">Quarto </Text>
-                <Select value={index} name='room' >
-                    <Option value={-1} name='room' >
+                <select value={roomIndex} name='room' onChange={e => setRoomIndex(e.target.value)} >
+                    <option value={-1} name='room' >
                         nenhum
-                    </Option>
+                    </option>
                     {
                         rooms.map((room, index) => {
                             return (room.residents.includes(props.resident.name) && index + 1)
                                 || (room.residents.length < room.beds && index + 1) || 0
                         })
                             .filter(index => index > 0)
-                            .map(index => <Option key={index} value={index - 1} name='room' >{index}</Option>)
+                            .map(index => <option key={index} value={index - 1} name='room' >{index}</option>)
                     }
-                </Select>
+                </select>
             </>
         )
     }
 
     return (
-        <FormProvider>
+        <>
             <div className="resident-card-content">
 
                 <>
@@ -77,7 +83,7 @@ export function Resident(props) {
                                     editMode
                                         ? <>
                                             <Text type="secondary">Administrador: </Text>
-                                            <Checkbox name='administrator' checked={props.resident.administrator} />
+                                            <input type="checkbox" name='administrator' onChange={e => setAdministrator(e.target.value)}/>
                                         </>
                                         : props.resident.administrator
                                         && (
@@ -113,9 +119,9 @@ export function Resident(props) {
 
             {
                 editMode
-                    ? <EditButtons editItem={(inputs) => {
-                            setRoom(inputs)
-                            editItem(inputs)
+                    ? <EditButtons editItem={() => {
+                            setRoom({room: roomIndex})
+                            editItem({administrator})
                         }}
                         removeItem={() => {
                             removeFromRoom()
@@ -124,7 +130,7 @@ export function Resident(props) {
                         setEditMode={setEditMode} />
                     : <EditButton setEditMode={setEditMode} />
             }
-        </FormProvider>
+        </>
 
     )
 }

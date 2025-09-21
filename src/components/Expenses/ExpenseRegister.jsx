@@ -1,26 +1,27 @@
+import { Button } from "antd"
 import "../../styles/DashboardRegister.css"
-import { FormProvider, Input, Submit } from "../Tools/FormProvider"
 
 export function ExpenseRegister(props) {
     const addExpense = props.addExpense || (()=> {})
+    const inputs = {}
     return (
-        <FormProvider>
-            <form className="std-register dashboard-register">
+            <form className="std-register dashboard-register" onSubmit={e => e.preventDefault()} >
                 <h4>Descreva sua despesa</h4>
                 <label>
-                    Tipo: <Input type="text" value="" name="type" />
+                    Tipo: <input type="text" value={inputs.type} name="type" onChange={e => inputs.type = e.target.value} />
                 </label>
                 <label>
-                    Data do vencimento: <Input type="text" value="" name="dueDate" />
+                    Data do vencimento: <input type="text" value={inputs.dueDate} name="dueDate" onChange={e => inputs.dueDate = e.target.value} />
                 </label>
                 <label>
-                    Total: <Input type="text" value="" name="total"/>
+                    Total: <input type="text" value={inputs.total} name="total" onChange={e => inputs.total = e.target.value} />
                 </label>
-                <Submit value="adicionar" submit={(inputs)=>{
+                <Button onClick={()=>{
                     addExpense(inputs)
                     props.activeModal.out(false)
-                }} />
+                }} >
+                    Adicionar
+                </Button>
             </form>
-        </FormProvider>
     )
 }
