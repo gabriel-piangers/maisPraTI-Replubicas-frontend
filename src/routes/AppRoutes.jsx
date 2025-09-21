@@ -11,6 +11,7 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
+import { MyRepublic } from "../pages/MyRepublic";
 
 export const AppRoutes = () => {
   return (
@@ -25,12 +26,12 @@ export const AppRoutes = () => {
 
           <Route element={<AuthLayout showHeader />}>
             <Route path="/" element={<HomePage />} />
-            <Route element={<PrivateRoute />}>
-              <Route path="dashboard" element={<DashboardLayout />}>
+
+            <Route path="dashboard" element={<DashboardLayout />}>
               <Route path="residents" element={<ResidentsPage />} />
               <Route path="expenses" element={<ExpensesPage />} />
               <Route path="rooms" element={<RoomsPage />} />
-            </Route>
+              <Route path="republic" element={<MyRepublic />}></Route>
             </Route>
           </Route>
         </Routes>

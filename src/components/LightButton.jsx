@@ -1,15 +1,17 @@
 import "../styles/Button.css";
 
-export function Button({
+export function LightButton({
   className = "",
   id = "",
   value = "",
   label = "botão",
-  onClick = () => {},
+  onClick = () => {
+    console.log("Botão clicado!");
+  },
 }) {
   return (
     <button
-      className={`std-button ${className}`}
+      className={`std-light-button ${className}`}
       id={id}
       value={value}
       onClick={onClick}

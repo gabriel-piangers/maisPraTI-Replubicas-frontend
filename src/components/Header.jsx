@@ -4,13 +4,14 @@ import { Avatar, Layout, Button } from "antd";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { Link, useLocation } from "react-router-dom";
+import { LightButton } from "./LightButton";
 
 const { Header: AntdHeader } = Layout;
 
 export const Header = () => {
   const { isAuthenticated } = useContext(AuthContext);
   const location = useLocation();
-  const userInitial = "R"; 
+  const userInitial = "R";
 
   const isHome = location.pathname === "/";
 
@@ -32,10 +33,12 @@ export const Header = () => {
         ) : (
           <div className="auth-buttons">
             <Link to="/login">
-              <Button type="primary" className="header-btn-login">Login</Button>
+              <Button type="primary" className="header-btn-login">
+                Login
+              </Button>
             </Link>
             <Link to="/register">
-              <Button className="header-btn-register">Cadastro</Button>
+              <LightButton label="Cadastrar" />
             </Link>
           </div>
         )}

@@ -1,0 +1,145 @@
+@import url("./index.css");
+
+.republic-section {
+  background-color: white;
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 32px auto;
+}
+
+.republic-title {
+  font-size: 26px;
+  margin-bottom: 24px;
+  color: #000;
+}
+
+.republic-img-container {
+  width: 100%;
+  margin-bottom: 24px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.republic-img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.republic-address {
+  font-size: 16px;
+  color: #8c8c8c;
+  margin-bottom: 16px;
+}
+
+.republic-description {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000;
+  margin-bottom: 24px;
+  white-space: pre-line;
+}
+
+.republic-details {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.republic-details li {
+  font-size: 16px;
+  color: #000;
+  display: flex;
+  align-items: center;
+}
+
+.republic-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.republic-form input[type="text"],
+.republic-form textarea {
+  max-height: 400px;
+  padding: 12px;
+  white-space: pre-line;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #000;
+  background-color: var(--bg-color);
+  transition: border-color 0.3s ease;
+}
+
+.republic-form input[type="text"]:focus,
+.republic-form textarea:focus {
+  outline: none;
+  border-color: #e91e63;
+}
+
+.republic-form-title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.republic-form-description {
+  min-height: 150px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.republic-form-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.republic-form-submit {
+  background-color: var(--btn-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.republic-form-submit:hover {
+  background-color: var(--btn-color-hover);
+  border: none !important;
+}
+
+@media (max-width: 768px) {
+  .republic-section {
+    padding: 16px;
+    margin: 16px;
+  }
+
+  .republic-img {
+    height: 250px;
+  }
+
+  .republic-details {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .republic-form {
+    gap: 16px;
+  }
+
+  .republic-form-buttons {
+    flex-direction: column;
+  }
+
+  .republic-form-submit,
+  .btn-cancel-edit {
+    width: 100%;
+    text-align: center;
+  }
+}

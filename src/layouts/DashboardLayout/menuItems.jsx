@@ -1,23 +1,24 @@
 import {
   FaUsers,
   FaHome,
-  FaBell,
   FaCog,
   FaTasks,
   FaWallet,
   FaBed,
 } from "react-icons/fa";
 
+import { FaBuildingColumns } from "react-icons/fa6";
+
 export const menuItems = [
   {
-    key: "/", // 
+    key: "/", //
     label: "Boas-vindas",
     icon: <FaHome />,
   },
   {
-    key: "/dashboard/ads", 
-    label: "Meus Anúncios",
-    icon: <FaBell />,
+    key: "/dashboard/republic",
+    label: "Minha republica",
+    icon: <FaBuildingColumns />,
   },
   {
     key: "./residents",
@@ -40,7 +41,7 @@ export const menuItems = [
     icon: <FaTasks />,
   },
   {
-    key: "/dashboard/settings", 
+    key: "/dashboard/settings",
     label: "Configurações",
     icon: <FaCog />,
   },
