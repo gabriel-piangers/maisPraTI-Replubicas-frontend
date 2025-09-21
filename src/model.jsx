@@ -71,7 +71,7 @@ const modelControler = Object.freeze({
       return newRooms
     })
   },
-  expensesHook() {
+  expensesHook(residents) {
     return createDataModel('expenses', function setExpense(expenses, index, inputs) {
       const newExpenses = Array.from(expenses)
       const expense = newExpenses[index] || {}
@@ -80,6 +80,14 @@ const modelControler = Object.freeze({
         dueDate: inputs.hasOwnProperty('dueDate') ? Number(inputs.dueDate) : expense.dueDate,
         total: inputs.hasOwnProperty('total') ? decimalNumber(inputs.total) : expense.total,
         payments: expense.payments || []
+      }
+      for (let { name } of residents) {
+        const payment = newExpenses[index].payments.find(payment => payment[0] === name)
+        if (payment) {
+          payment[1] = decimalNumber(inputs['payment' + name] || '')
+        } else {
+          newExpenses[index].payments.push([name, decimalNumber(inputs['payment' + name] || '')])
+        }
       }
       return newExpenses
     })
@@ -96,11 +104,11 @@ const modelControler = Object.freeze({
   },
   roomHook(residentName) {
     return createDataModel('rooms', function setRoom(rooms, index, inputs) {
-      const room = inputs.hasOwnProperty('room') ? inputs.rooms : -1
+      const room = inputs.hasOwnProperty('room') ? inputs.room : -1
       const newRooms = Array.from(rooms)
       if ((room >= 0 && room < rooms.length)
-        && !rooms[room].residents.includes(residentName)
-        && rooms[room].residents.length < rooms[room].beds) {
+      && !rooms[room].residents.includes(residentName)
+      && rooms[room].residents.length < rooms[room].beds) {
         newRooms[room].residents.push(residentName)
         if (index >= 0) {
           newRooms[index].residents = newRooms[index].residents.filter((resident) => resident !== residentName)
