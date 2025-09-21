@@ -11,7 +11,6 @@ const modal = {
     left: 0
 }
 
-
 export function Modal(props) {
     const [active, setActive] = useState(false)
     const activeModal = props.activeModal || {}

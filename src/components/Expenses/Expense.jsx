@@ -1,9 +1,8 @@
 import { Flex, Typography, Space } from "antd";
 import { useState } from "react"
-import { Input, FormProvider } from "../Tools/FormProvider"
 import { EditButtons } from "../CardButtons/EditButtons";
 import { EditButton } from "../CardButtons/EditButton";
-import { decimalString } from "./Balance";
+import { decimalString, decimalNumber } from "./Balance";
 
 const { Text } = Typography
 
@@ -11,17 +10,26 @@ export function Expense(props) {
 
     const [editMode, setEditMode] = useState(false)
     const { editItem, removeItem } = props
-    const expense = props.expense
+    const [payments, setPayments] = useState(props.expense.payments)
+    const [dueDate, setDueDate] = useState(props.expense.dueDate)
+    const [total, setTotal] = useState(props.expense.total)
 
     function getQuotas() {
         return props.residents.map(name => {
-            const quota = (expense.payments.find(([resident]) => resident === name) || [undefined, 0])[1]
+            const payment = (payments.find(([resident]) => resident === name) || [name, 0])
+            const quota = payment[1]
             return editMode
                 ? <span key={name}>
                     <Text type="secondary">
                         {name}:
                     </Text>
-                    {' R$'} <Input value={decimalString(quota)} name={'payment' + name} />
+                    {' R$'} <input value={decimalString(quota)} name={'payment' + name} onChange={(e) => {
+                        payment[1] = decimalNumber(e.target.value)
+                        if (payments.every(payment => payment[0] !== name)) {
+                            payments.push(payment)
+                        }
+                        setPayments(Array.from(payments))
+                    }} />
                 </span>
                 : <span key={name}>
                     <Text type="secondary">
@@ -33,13 +41,13 @@ export function Expense(props) {
     }
 
     return (
-        <FormProvider>
+        <>
             <div className="resident-card-content">
                 <>
                     <Flex gap={16} align="center" wrap>
                         <Flex vertical>
                             <Text strong className="resident-name">
-                                {expense.type}
+                                {props.expense.type}
                             </Text>
                             {
                                 editMode
@@ -48,26 +56,26 @@ export function Expense(props) {
                                             <Text type="secondary">
                                                 Vencimento:
                                             </Text>
-                                            <Input value={expense.dueDate} name='dueDate' />
+                                            <input value={dueDate} name='dueDate' onChange={(e) => setDueDate(e.target.value)} />
                                         </Flex>
                                         <Flex gap={8}>
                                             <Text type="secondary">
                                                 Valor:
                                             </Text>
-                                            {'R$ '}<Input value={decimalString(expense.total)} name='total' />
+                                            {'R$ '}<input value={decimalString(total)} name='total' onChange={(e) => setTotal(decimalNumber(e.target.value))} />
                                         </Flex>
                                     </>
                                     : <Space size="middle">
                                         <Text type="secondary">
                                             Vencimento:
                                         </Text>
-                                        {expense.dueDate}
+                                        {dueDate}
 
                                         <Text type="secondary">•</Text>
                                         <Text type="secondary">
                                             Valor:
                                         </Text>
-                                        { 'R$ '}{decimalString(expense.total)}
+                                        { 'R$ '}{decimalString(total)}
                                     </Space>
                             }
                         </Flex>
@@ -85,11 +93,11 @@ export function Expense(props) {
             </div>
             {
                 editMode
-                    ? <EditButtons editItem={editItem}
+                    ? <EditButtons editItem={() => editItem({payments, dueDate, total})}
                     setEditMode={setEditMode}
                      removeItem={removeItem} />
                     : <EditButton setEditMode={setEditMode} />
             }
-        </FormProvider>
+        </>
     )
 }

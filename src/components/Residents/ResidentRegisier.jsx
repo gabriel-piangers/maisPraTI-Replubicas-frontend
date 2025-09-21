@@ -1,21 +1,22 @@
+import { Button } from "antd"
 import "../../styles/DashboardRegister.css"
-import { FormProvider, Input, Submit } from "../Tools/FormProvider"
 
 export function ResidentRegisier(props) {
-    const addResident = props.addResident || (() => {})
+    const addResident = props.addResident || (() => { })
+    const inputs = {}
     return (
-        <FormProvider>
-            <form className="std-register dashboard-register">
-                <h4>Adicione um morador</h4>
-                <label>
-                    Nome: <Input type="text" value="" name="name"/>
-                </label>
-                <Submit value="adicionar" submit={(inputs)=>{
-                    inputs.setup('administrator', [false])
-                    addResident(inputs)
-                    props.activeModal.out(false)
-                }} />
-            </form>
-        </FormProvider>
+        <form className="std-register dashboard-register" onSubmit={e => e.preventDefault()}>
+            <h4>Adicione um morador</h4>
+            <label>
+                Nome: <input type="text" value={inputs.name} name="name" onChange={e => inputs.name = e.target.value} />
+            </label>
+            <Button onClick={() => {
+                inputs.administrator = false
+                addResident(inputs)
+                props.activeModal.out(false)
+            }} >
+                Adicionar
+            </Button>
+        </form>
     )
 }
