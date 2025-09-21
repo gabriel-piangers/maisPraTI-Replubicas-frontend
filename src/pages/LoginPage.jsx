@@ -1,25 +1,41 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
-import { registerSchema } from "../schemas/register";
+import { loginSchema } from '../schemas/login';
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
+import { TbArrowBack } from "react-icons/tb";
+import { Button } from "antd";
 import "../styles/LoginPage.css";
 import logo from "../assets/logo.png";
-
 import bg1 from "../assets/8074.jpg";
 import bg2 from "../assets/casa-isolada-no-campo.jpg";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
+    const {login, isAuthenticated} = useContext(AuthContext); 
     const [showPassword, setShowPassword] = useState(false);
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: zodResolver(registerSchema)
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
+        resolver: zodResolver(loginSchema)
     });
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const navigate = useNavigate();
+
+    const onSubmit = async (data) => {
+      
+      try {
+        const res = await login(data.email, data.senha);
+        if (res) {
+          setTimeout(() => {
+            navigate("/dashboard")
+          }, 2000)
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
 
   return (
@@ -33,6 +49,10 @@ function LoginPage() {
           <img src={logo} alt="Logo" />
           <h1>Bem-vindo de volta!</h1>
           <p>Faça login para continuar</p>
+          <Link to="/" className="btn-return">
+            <TbArrowBack size={19} />
+            Home
+          </Link>
         </header>
         <div className="card">
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -47,6 +67,7 @@ function LoginPage() {
                     id="email"
                     placeholder="Digite seu email"
                     {...register("email")}
+                    disabled={isSubmitting}
                   />
                   <MdEmail className="input-icon-left" />
                 </div>
@@ -55,7 +76,7 @@ function LoginPage() {
                 </small>
               </div>
               <div className="form-field">
-                <label htmlFor="password">
+                <label htmlFor="senha">
                   Senha<span className="required-field">*</span>
                 </label>
                 <div className="input-group">
@@ -63,7 +84,8 @@ function LoginPage() {
                     type={showPassword ? "text" : "password"}
                     id="password"
                     placeholder="Digite sua senha"
-                    {...register("password")}
+                    {...register("senha")}
+                    disabled={isSubmitting}
                   />
                   {showPassword ? (
                     <button
@@ -85,12 +107,17 @@ function LoginPage() {
                   <RiLockPasswordFill className="input-icon-left" />
                 </div>
                 <small className="error-visible">
-                  {errors.password?.message || "⠀"}
+                  {errors.senha?.message || "⠀"}
                 </small>
               </div>
-              <button className="button" type="submit">
+              <Button 
+                className="button" 
+                loading={isSubmitting} 
+                htmlType='submit'
+                disabled={isAuthenticated}
+              >
                 Login
-              </button>
+              </Button>
             </div>
           </form>
           <div className="divider">ou</div>
