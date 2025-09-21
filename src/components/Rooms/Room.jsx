@@ -1,6 +1,5 @@
 import { Flex, Typography, Space } from "antd";
 import { useState } from "react"
-import { Input, FormProvider } from "../Tools/FormProvider"
 import { EditButtons } from "../CardButtons/EditButtons";
 import { EditButton } from "../CardButtons/EditButton";
 
@@ -10,6 +9,9 @@ export function Room(props) {
 
     const [editMode, setEditMode] = useState(false)
     const { editItem, removeItem } = props
+    const [beds, setBeds] = useState(props.room.beds)
+    const [suite, setSuite] = useState(props.room.suite)
+    const [furniture, setFurniture] = useState(props.room.furniture)
 
     function getOccupants() {
         return props.room.residents.map(name => {
@@ -22,7 +24,7 @@ export function Room(props) {
     }
 
     return (
-        <FormProvider>
+        <>
             <div className="resident-card-content">
                 <>
                     <Flex gap={16} align="center" wrap>
@@ -37,34 +39,34 @@ export function Room(props) {
                                             <Text type="secondary">
                                                 Lugares:
                                             </Text>
-                                            <Input value={props.room.beds} name='beds' />
+                                            <input value={beds} name='beds' onChange={(e) => setBeds(e.target.value)} />
                                         </Flex>
                                         <Flex gap={8}>
                                             <Text type="secondary">
                                                 Suite:
                                             </Text>
-                                            <Input value={props.room.suite} name='suite' />
+                                            <input value={suite} name='suite' onChange={(e) => setSuite(e.target.value)} />
                                         </Flex>
                                         <Flex gap={8}>
                                             <Text type="secondary">
                                                 Mobília:
                                             </Text>
-                                            <Input value={props.room.furniture} name='furniture' />
+                                            <input value={furniture} name='furniture' onChange={(e) => setFurniture(e.target.value)} />
                                         </Flex>
                                     </>
                                     : <>
                                         <Space size="middle">
                                             <Text type="secondary">
-                                                Lugares: {props.room.beds}
+                                                Lugares: {beds}
                                             </Text>
                                             <Text type="secondary">•</Text>
                                             <Text type="secondary">
-                                                Suite: {props.room.suite}
+                                                Suite: {suite}
                                             </Text>
                                         </Space>
                                         <span>
                                             <Text type="secondary">
-                                                Mobília: {props.room.furniture}
+                                                Mobília: {furniture}
                                             </Text>
                                         </span>
                                     </>
@@ -84,11 +86,11 @@ export function Room(props) {
             </div>
             {
                 editMode
-                    ? <EditButtons editItem={editItem}
+                    ? <EditButtons editItem={() => editItem({beds, suite, furniture})}
                         setEditMode={setEditMode}
                         removeItem={removeItem} />
                     : <EditButton setEditMode={setEditMode} />
             }
-        </FormProvider>
+        </>
     )
 }

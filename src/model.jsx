@@ -63,9 +63,9 @@ const modelControler = Object.freeze({
       const newRooms = Array.from(rooms)
       const room = rooms[index]
       newRooms[index] = {
-        beds: inputs.has('beds') ? Number(inputs.get('beds')) : room.beds,
-        suite: inputs.has('suite') ? inputs.get('suite') : room.suite,
-        furniture: inputs.has('furniture') ? inputs.get('furniture') : room.furniture,
+        beds: inputs.hasOwnProperty('beds') ? Number(inputs.beds) : room.beds,
+        suite: inputs.hasOwnProperty('suite') ? inputs.suite : room.suite,
+        furniture: inputs.hasOwnProperty('furniture') ? inputs.furniture : room.furniture,
         residents: room?.residents ?? []
       }
       return newRooms
@@ -76,18 +76,10 @@ const modelControler = Object.freeze({
       const newExpenses = Array.from(expenses)
       const expense = newExpenses[index] || {}
       newExpenses[index] = {
-        type: inputs.has('type') ? inputs.get('type') : expense.type,
-        dueDate: inputs.has('dueDate') ? Number(inputs.get('dueDate')) : expense.dueDate,
-        total: inputs.has('total') ? decimalNumber(inputs.get('total')) : expense.total,
-        payments: expense.payments || []
-      }
-      for (let { name: resident } of residents) {
-        const payment = newExpenses[index].payments.find(payment => payment[0] === resident)
-        if (payment) {
-          payment[1] = decimalNumber(inputs.get('payment' + resident))
-        } else {
-          newExpenses[index].payments.push([resident, decimalNumber(inputs.get('payment' + resident))])
-        }
+        type: inputs.hasOwnProperty('type') ? inputs.type : expense.type,
+        dueDate: inputs.hasOwnProperty('dueDate') ? Number(inputs.dueDate) : expense.dueDate,
+        total: inputs.hasOwnProperty('total') ? decimalNumber(inputs.total) : expense.total,
+        payments: inputs.hasOwnProperty('payments') ? inputs.payments : expense.payments
       }
       return newExpenses
     })
@@ -96,19 +88,19 @@ const modelControler = Object.freeze({
     return createDataModel('residents', function setResident(residents, index, inputs) {
       const newResidents = Array.from(residents)
       newResidents[index] = {
-        name: inputs.has('name') ? inputs.get('name') : residents[index].name,
-        administrator: inputs.has('administrator') ? inputs.get('administrator') : residents[index].administrator,
+        name: inputs.hasOwnProperty('name') ? inputs.name : residents[index].name,
+        administrator: inputs.hasOwnProperty('administrator') ? inputs.administrator : residents[index].administrator,
       }
       return newResidents
     })
   },
   roomHook(residentName) {
     return createDataModel('rooms', function setRoom(rooms, index, inputs) {
-      const room = inputs.has('room') ? inputs.get('room') : -1
+      const room = inputs.hasOwnProperty('room') ? inputs.room : -1
       const newRooms = Array.from(rooms)
       if ((room >= 0 && room < rooms.length)
-        && !rooms[room].residents.includes(residentName)
-        && rooms[room].residents.length < rooms[room].beds) {
+      && !rooms[room].residents.includes(residentName)
+      && rooms[room].residents.length < rooms[room].beds) {
         newRooms[room].residents.push(residentName)
         if (index >= 0) {
           newRooms[index].residents = newRooms[index].residents.filter((resident) => resident !== residentName)
