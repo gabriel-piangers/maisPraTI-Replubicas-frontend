@@ -6,6 +6,7 @@ import { DashboardLayout } from "../layouts/DashboardLayout";
 import { Residents as ResidentsPage } from "../components/Residents";
 import { Expenses as ExpensesPage } from "../components/Expenses";
 import { Rooms as RoomsPage } from "../components/Rooms";
+import { TasksPage } from "../pages/TasksPage";
 import { AuthProvider } from "../contexts/AuthContext";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
@@ -25,12 +26,13 @@ export const AppRoutes = () => {
 
           <Route element={<AuthLayout showHeader />}>
             <Route path="/" element={<HomePage />} />
-            <Route element={<PrivateRoute />}>
+            {/* <Route element={<PrivateRoute />}> */}
               <Route path="dashboard" element={<DashboardLayout />}>
               <Route path="residents" element={<ResidentsPage />} />
+              <Route path="tasks" element={<TasksPage />} />
               <Route path="expenses" element={<ExpensesPage />} />
               <Route path="rooms" element={<RoomsPage />} />
-            </Route>
+            {/* </Route> */}
             </Route>
           </Route>
         </Routes>
