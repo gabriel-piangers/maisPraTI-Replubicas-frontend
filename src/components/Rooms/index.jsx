@@ -29,12 +29,9 @@ export function Rooms(props) {
     const cards = rooms.map((room, index) => {
         return (
             <Card className="resident-card" key={index}>
-                <div className="resident-card-container">
                     <Room room={room} index={index + 1}
                     editItem={createEdit(index)}
-                    removeItem={createRemove(index)} />
-                </div>
-            </Card>
+                    removeItem={createRemove(index)} />            </Card>
         )
     })
 

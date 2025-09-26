@@ -10,7 +10,7 @@ export function decimalNumber(str) {
 export function Balance (props) {
     const model = useContext(ModelContext)
     const [residents] = model.residentsHook()
-    const [expenses] = model.expensesHook(residents)
+    const [expenses] = model.expensesHook()
     const balance = expenses.reduce((total, expense) => {
         return total
             + (expense.payments.find(item => item[0] === props.residentName) || ['', 0])[1]

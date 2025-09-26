@@ -5,13 +5,13 @@ import { Model, ModelProvider as Provider } from "./components/Tools/ModelProvid
 
 const mainRedux = new Model({
   user: Model.default,
-  residents: Model.newRedux(mock.residents, {
+  residents: Model.newRedux([], {
     set: (state, residents) => residents || Array.from(state)
   }),
-  expenses: Model.newRedux(mock.expenses, {
+  expenses: Model.newRedux([], {
     set: (state, expenses) => expenses || Array.from(state)
   }),
-  rooms: Model.newRedux(mock.rooms, {
+  rooms: Model.newRedux([], {
     set: (state, rooms) => rooms || Array.from(state)
   })
 })
@@ -22,11 +22,8 @@ class DataModel {
   #name
 
   constructor(name, setItem) {
-    const [array, setArray] = useState([])
+    const [array, setArray] = useState(reduxModel.get(name))
     reduxModel.subscribe(name, setArray)
-    useEffect(() => {
-      reduxModel.dispatch(name + '.set')
-    }, [])
     this.array = array
     this.#name = name
     this.#setItem = setItem
@@ -71,7 +68,7 @@ const modelControler = Object.freeze({
       return newRooms
     })
   },
-  expensesHook(residents) {
+  expensesHook() {
     return createDataModel('expenses', function setExpense(expenses, index, inputs) {
       const newExpenses = Array.from(expenses)
       const expense = newExpenses[index] || {}
@@ -98,22 +95,26 @@ const modelControler = Object.freeze({
     return createDataModel('rooms', function setRoom(rooms, index, inputs) {
       const room = inputs.hasOwnProperty('room') ? inputs.room : -1
       const newRooms = Array.from(rooms)
-      if ((room >= 0 && room < rooms.length)
-      && !rooms[room].residents.includes(residentName)
-      && rooms[room].residents.length < rooms[room].beds) {
-        newRooms[room].residents.push(residentName)
-        if (index >= 0) {
-          newRooms[index].residents = newRooms[index].residents.filter((resident) => resident !== residentName)
-        }
-        return newRooms
+      if (index >= 0) {
+        newRooms[index].residents = newRooms[index].residents.filter((resident) => resident !== residentName)
       }
-      return rooms
+      if ((room >= 0 && room < rooms.length)
+        && !rooms[room].residents.includes(residentName)
+        && rooms[room].residents.length < rooms[room].beds) {
+        newRooms[room].residents.push(residentName)
+      }
+      return newRooms
     })
   }
 })
 
 
 export function ModelProvider(props) {
+  useEffect(() => {
+    reduxModel.dispatch('residents.set', mock.residents)
+    reduxModel.dispatch('expenses.set', mock.expenses)
+    reduxModel.dispatch('rooms.set', mock.rooms)
+  }, [])
   return (
     <Provider model={modelControler}>
       {props.children}

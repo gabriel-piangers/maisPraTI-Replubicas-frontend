@@ -29,11 +29,9 @@ export function Residents(props) {
     const cards = residents.map((resident, index) => {
         return (
             <Card className="resident-card" key={resident.name}>
-                <div className="resident-card-container">
                     <Resident resident={resident} 
                     editItem={createEdit(index)}
                     removeItem={createRemove(index)} />
-                </div>
             </Card>
         )
     })
