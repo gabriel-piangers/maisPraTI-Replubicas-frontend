@@ -14,6 +14,10 @@ import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import { MyRepublic } from "../pages/MyRepublic";
 
+import { DashboardSettings } from "../pages/DashboardSettings";
+
+
+
 export const AppRoutes = () => {
   return (
     <AuthProvider>
@@ -35,7 +39,10 @@ export const AppRoutes = () => {
               <Route path="tasks" element={<TasksPage />} />
               <Route path="expenses" element={<ExpensesPage />} />
               <Route path="rooms" element={<RoomsPage />} />
+              <Route path="settings" element={<DashboardSettings />} />
               <Route path="republic" element={<MyRepublic />}>
+              
+
             {/* </Route> */}
             </Route>
           </Route>
