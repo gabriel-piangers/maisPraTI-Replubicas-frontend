@@ -13,10 +13,9 @@ import RegisterPage from "../pages/RegisterPage";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import { MyRepublic } from "../pages/MyRepublic";
+import { DetailsPage } from "../pages/DetailsPage";
 
 import { DashboardSettings } from "../pages/DashboardSettings";
-
-
 
 export const AppRoutes = () => {
   return (
@@ -29,21 +28,21 @@ export const AppRoutes = () => {
             <Route path="/register" element={<RegisterPage />} />
           </Route>
 
-          <Route element={<AuthLayout showHeader />}/>
+          <Route element={<AuthLayout showHeader />}>
             <Route path="/" element={<HomePage />} />
+            <Route path="/details" element={<DetailsPage/>} />
 
             <Route path="dashboard" element={<DashboardLayout />}>
-            {/* <Route element={<PrivateRoute />}> */}
-              <Route path="dashboard" element={<DashboardLayout />}/>
+              {/* <Route element={<PrivateRoute />}> */}
+              <Route path="dashboard" element={<DashboardLayout />} />
               <Route path="residents" element={<ResidentsPage />} />
               <Route path="tasks" element={<TasksPage />} />
               <Route path="expenses" element={<ExpensesPage />} />
               <Route path="rooms" element={<RoomsPage />} />
               <Route path="settings" element={<DashboardSettings />} />
               <Route path="republic" element={<MyRepublic />}>
-              
-
-            {/* </Route> */}
+                {/* </Route> */}
+              </Route>
             </Route>
           </Route>
         </Routes>

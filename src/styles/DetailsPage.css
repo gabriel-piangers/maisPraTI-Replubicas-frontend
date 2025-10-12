@@ -1,0 +1,148 @@
+@import url("./index.css");
+
+.details-main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  gap: 2rem;
+  margin: 1rem auto;
+  max-width: 1400px;
+  padding: 0 5%;
+}
+
+.details-left {
+  width: 75%;
+  background-color: white;
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+.details-right {
+  width: 25%;
+  position: sticky;
+  top: calc(64px + 1rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  height: fit-content;
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.details-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.1rem;
+}
+
+.details-info h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.details-info hr {
+  border: none;
+  border-top: 2px solid rgba(0, 0, 0, 0.2);
+  margin: 1rem 0;
+}
+
+.details-img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.details-return {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+  font-size: 1.6rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 0.3rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.details-return:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  scale: 120%;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.details-header h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--btn-color);
+}
+
+.details-header div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.details-header small {
+  font-size: 0.75rem;
+  text-align: right;
+}
+
+.details-cards {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.details-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: var(--bg-color);
+  border-radius: 0.5rem;
+  width: 20%;
+}
+
+.details-card span {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--btn-color);
+}
+
+.details-card-icon {
+  font-size: 1.5rem;
+}
+
+.details-host-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.details-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.details-contact div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}

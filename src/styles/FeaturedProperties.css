@@ -90,6 +90,18 @@
   align-items: center;
 }
 
+.fp-info-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+#fp-info-btn {
+  align-self: flex-end;
+  margin: 0.5rem 0;
+}
+
 .fp-name {
   font-weight: 600;
   color: #222;

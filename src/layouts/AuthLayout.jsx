@@ -6,7 +6,7 @@ const { Content } = Layout;
 
 export const AuthLayout = ({ showHeader = true }) => {
   return (
-    <Layout>
+    <Layout style={{ minHeight: "100vh" }}>
       {showHeader && <Header />}
       <Content>
         <Outlet />
