@@ -1,0 +1,54 @@
+.dashboard-settings {
+    padding: 1.5rem;
+  }
+  
+  .dashboard-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+  
+  .settings-section {
+    background: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+  
+  .section-desc {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+  
+  .settings-form input[type="text"],
+  .settings-form input[type="email"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .settings-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .btn-submit {
+    background-color: #d6345e;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 0.8rem;
+  }
+  
