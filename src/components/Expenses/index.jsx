@@ -19,7 +19,7 @@ function getResidentsList (residents) {
 export function Expenses (props) {
     const model = useContext(ModelContext)
     const [residents] = model.residentsHook()
-    const [expenses, expensesModel] = model.expensesHook(residents)
+    const [expenses, expensesModel] = model.expensesHook()
     function addExpense(inputs) {
         expensesModel.add(inputs)
     }
@@ -39,12 +39,10 @@ export function Expenses (props) {
         const index = (expenses.length - 1) - i
         return (
             <Card className="resident-card" key={i}>
-                <div className="resident-card-container">
                     <Expense expense={expense}
                         residents={getResidentsList(residents)}
                         removeItem={createRemove(index)}
                         editItem={createEdit(index)} />
-                </div>
             </Card>
         )
     })

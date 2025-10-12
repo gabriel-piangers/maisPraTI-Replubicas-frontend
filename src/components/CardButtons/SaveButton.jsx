@@ -2,10 +2,7 @@ import { Button } from "antd"
 
 export function SaveButton(props) {
     return (
-        <Button onClick={() => {
-            props.editItem()
-            props.setEditMode(false)
-        }}>
+        <Button htmlType="submit">
             Salvar
         </Button>
     )

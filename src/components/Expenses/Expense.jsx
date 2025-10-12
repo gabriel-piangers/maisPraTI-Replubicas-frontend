@@ -11,8 +11,17 @@ export function Expense(props) {
     const [editMode, setEditMode] = useState(false)
     const { editItem, removeItem } = props
     const [payments, setPayments] = useState(props.expense.payments)
-    const [dueDate, setDueDate] = useState(props.expense.dueDate)
-    const [total, setTotal] = useState(props.expense.total)
+
+    const expense = props.expense
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault()
+        const formData = new FormData(e.target)
+        const payload = Object.fromEntries(formData.entries())
+        payload.payments = payments
+        editItem(payload)
+        setEditMode(false)
+    }
 
     function getQuotas() {
         return props.residents.map(name => {
@@ -41,63 +50,63 @@ export function Expense(props) {
     }
 
     return (
-        <>
+        <form className="resident-card-container" onSubmit={handleFormSubmit}>
             <div className="resident-card-content">
-                <>
-                    <Flex gap={16} align="center" wrap>
-                        <Flex vertical>
-                            <Text strong className="resident-name">
-                                {props.expense.type}
-                            </Text>
-                            {
-                                editMode
-                                    ? <>
-                                        <Flex gap={8}>
-                                            <Text type="secondary">
-                                                Vencimento:
-                                            </Text>
-                                            <input value={dueDate} name='dueDate' onChange={(e) => setDueDate(e.target.value)} />
-                                        </Flex>
-                                        <Flex gap={8}>
-                                            <Text type="secondary">
-                                                Valor:
-                                            </Text>
-                                            {'R$ '}<input value={decimalString(total)} name='total' onChange={(e) => setTotal(decimalNumber(e.target.value))} />
-                                        </Flex>
-                                    </>
-                                    : <Space size="middle">
+
+                <Flex gap={16} align="center" wrap>
+                    <Flex vertical>
+                        <Text strong className="resident-name">
+                            {expense.type}
+                        </Text>
+                        {
+                            editMode
+                                ? <>
+                                    <Flex gap={8}>
                                         <Text type="secondary">
                                             Vencimento:
                                         </Text>
-                                        {dueDate}
-
-                                        <Text type="secondary">•</Text>
+                                        <input defaultValue={expense.dueDate} name='dueDate' />
+                                    </Flex>
+                                    <Flex gap={8}>
                                         <Text type="secondary">
                                             Valor:
                                         </Text>
-                                        { 'R$ '}{decimalString(total)}
-                                    </Space>
-                            }
+                                        {'R$ '}<input defaultValue={decimalString(expense.total)} name='total' />
+                                    </Flex>
+                                </>
+                                : <Space size="middle">
+                                    <Text type="secondary">
+                                        Vencimento:
+                                    </Text>
+                                    {expense.dueDate}
+
+                                    <Text type="secondary">•</Text>
+                                    <Text type="secondary">
+                                        Valor:
+                                    </Text>
+                                    {'R$ '}{decimalString(expense.total)}
+                                </Space>
+                        }
+                    </Flex>
+                </Flex>
+
+                {
+                    <Flex gap={32}>
+                        <Text >Pagamentos: </Text>
+                        <Flex vertical gap={8}>
+                            {getQuotas()}
                         </Flex>
                     </Flex>
+                }
 
-                    {
-                        <Flex gap={32}>
-                            <Text >Pagamentos: </Text>
-                            <Flex vertical gap={8}>
-                                {getQuotas()}
-                            </Flex>
-                        </Flex>
-                    }
-                </>
             </div>
             {
                 editMode
-                    ? <EditButtons editItem={() => editItem({payments, dueDate, total})}
-                    setEditMode={setEditMode}
-                     removeItem={removeItem} />
+                    ? <EditButtons
+                        setEditMode={setEditMode}
+                        removeItem={removeItem} />
                     : <EditButton setEditMode={setEditMode} />
             }
-        </>
+        </form>
     )
 }
